@@ -66,77 +66,55 @@ body {
   border-radius: 10px;
   font-family: var(--font-main);
   transition: background .18s, color .18s, box-shadow .18s;
-  letter-spacing: .01em;
 }
 .nav-btn.active { background: var(--accent); color: #fff; box-shadow: 0 2px 8px var(--accent-glow); }
 .nav-btn:hover:not(.active) { background: rgba(255,255,255,0.05); color: var(--text-main); }
 
 .section { display:none; } .section.active { display:block; }
 
-/* LABELS & INPUTS */
-.field-label { font-size: 11px; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 5px; letter-spacing: .07em; text-transform: uppercase; }
-input[type=number], input[type=text], input[type=email], input[type=password], input[type=date], select, textarea {
+/* INPUTS */
+.field-label { font-size: 11px; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 5px; text-transform: uppercase; }
+input[type=number], input[type=text], input[type=password], input[type=date], select, textarea {
   font-family: var(--font-main); font-size: 14px; border: 1.5px solid var(--border);
   border-radius: var(--radius-sm); background: var(--bg-main); color: var(--text-main);
-  padding: 8px 10px; transition: border-color .15s, box-shadow .15s; outline: none; width: 100%;
+  padding: 8px 10px; outline: none; width: 100%;
 }
 input:focus, select:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-light); }
 
-/* CARDS */
-.ex-card { background: var(--bg-card); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 16px; margin-bottom: 16px; box-shadow: var(--shadow); transition: box-shadow .18s, border-color .18s; }
-.ex-card:hover { border-color: var(--border-light); box-shadow: var(--shadow-md); }
+/* CARDS & BUTTONS */
+.ex-card { background: var(--bg-card); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 16px; margin-bottom: 16px; box-shadow: var(--shadow); }
 .ex-card-header { display:flex; align-items:center; gap:6px; margin-bottom:12px; }
-.ex-card-header input[type="text"] { flex:1; font-size:15px; font-weight: 600; background: transparent; border: none; padding: 0; }
-.ex-card-header input[type="text"]:focus { box-shadow: none; border-bottom: 1px solid var(--accent); border-radius: 0; }
-
-/* SETS GRID */
+.ex-card-header input { flex:1; font-weight: 600; background: transparent; border: none; }
 .set-cols { display:grid; grid-template-columns:28px 1fr 1fr 74px 80px 28px; gap:6px; align-items:center; margin-bottom:8px; }
-.set-cols-header { display:grid; grid-template-columns:28px 1fr 1fr 74px 80px 28px; gap:6px; margin-bottom:6px; align-items: end; }
-.col-lbl { font-size:11px; color:var(--text-muted); text-align:center; font-weight:600; letter-spacing:.04em; text-transform: uppercase; }
+.set-cols-header { display:grid; grid-template-columns:28px 1fr 1fr 74px 80px 28px; gap:6px; margin-bottom:6px; }
+.col-lbl { font-size:11px; color:var(--text-muted); text-align:center; font-weight:600; }
 .set-num { font-size: 12px; text-align: center; font-weight: 700; color: var(--bg-main); background: var(--text-main); border-radius: 6px; padding: 4px 0; }
-.set-cols input { text-align:center; padding: 8px 4px; }
 
-/* TOGGLES */
-.toggle-btn { display:flex; align-items:center; justify-content:center; gap:4px; font-size: 11px; font-weight: 600; color: var(--text-muted); background: var(--bg-main); border: 1.5px solid var(--border); border-radius: 7px; padding: 0 4px; height: 34px; cursor: pointer; white-space: nowrap; transition: all .15s; }
+.toggle-btn { display:flex; align-items:center; justify-content:center; gap:4px; font-size: 11px; font-weight: 600; color: var(--text-muted); background: var(--bg-main); border: 1.5px solid var(--border); border-radius: 7px; height: 34px; cursor: pointer; }
 .toggle-drop.on { background: var(--accent-light); border-color: var(--accent); color: var(--accent); }
 .toggle-fail.on { background: var(--red-light); border-color: var(--red); color: var(--red); }
 
-/* BUTTONS */
-.icon-btn { background: var(--bg-main); border: 1.5px solid var(--border); border-radius: 7px; width: 30px; height: 30px; cursor: pointer; color: var(--text-muted); display:flex; align-items:center; justify-content:center; flex-shrink: 0; transition: all .15s; }
-.icon-btn:hover { background: rgba(239, 68, 68, 0.1); border-color: #ef4444; color: #ef4444; }
+.icon-btn { background: var(--bg-main); border: 1.5px solid var(--border); border-radius: 7px; width: 30px; height: 30px; cursor: pointer; color: var(--text-muted); display:flex; align-items:center; justify-content:center; }
+.icon-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-.add-row-btn { background: none; border: 1.5px dashed var(--border-light); border-radius: var(--radius-sm); width:100%; padding:8px; font-size:12px; font-weight:600; color: var(--text-muted); cursor:pointer; margin-top:8px; transition: background .15s, border-color .15s, color .15s; letter-spacing: .02em; }
-.add-row-btn:hover { background:var(--bg-main); border-color: var(--accent); color: var(--text-main); }
+.save-btn { background: var(--accent); color: #fff; border: none; border-radius: var(--radius-sm); padding: 14px; font-weight: 700; cursor: pointer; width:100%; box-shadow: 0 4px 12px var(--accent-glow); }
+.add-row-btn { background: none; border: 1.5px dashed var(--border-light); border-radius: var(--radius-sm); width:100%; padding:8px; font-size:12px; color: var(--text-muted); cursor:pointer; margin-top:8px; }
+.add-ex-btn { background: var(--bg-card); border: 1.5px dashed var(--border-light); border-radius: var(--radius); width:100%; padding:14px; font-weight:600; cursor:pointer; margin-bottom:16px; }
 
-.add-ex-btn { background: var(--bg-card); border: 1.5px dashed var(--border-light); border-radius: var(--radius); width:100%; padding:14px; font-size:13px; font-weight:600; color: var(--text-main); cursor:pointer; margin-bottom:16px; transition: border-color .15s, color .15s; }
-.add-ex-btn:hover { border-color: var(--accent); color: var(--accent); }
-
-.save-btn { background: var(--accent); color: #fff; border: none; border-radius: var(--radius-sm); padding: 14px; font-size: 14px; font-weight: 700; cursor: pointer; width:100%; letter-spacing: .03em; box-shadow: 0 4px 12px var(--accent-glow); transition: opacity .15s, transform .1s; }
-.save-btn:hover { opacity:.92; transform: translateY(-1px); }
-.save-btn:active { transform: translateY(0); }
-
-.save-msg { text-align:center; font-size:12px; margin-top:8px; min-height:18px; font-weight:600; }
-
-/* HISTORY & STATS */
-.log-entry { border: 1.5px solid var(--border); border-radius: var(--radius); padding: 16px; margin-bottom: 16px; background: var(--bg-card); box-shadow: var(--shadow); transition: box-shadow .18s; }
-.log-entry:hover { box-shadow: var(--shadow-md); border-color: var(--border-light); }
-.log-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px; }
-
-.type-badge { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 6px; letter-spacing: .04em; text-transform: uppercase; background: var(--accent-light); color: var(--accent); }
-.set-chip { display:inline-flex; align-items:center; gap:4px; background: var(--bg-main); border: 1px solid var(--border); border-radius: 6px; padding: 4px 8px; margin: 4px 4px 4px 0; font-size: 12px; font-weight:500; }
+/* LOGS */
+.log-entry { border: 1.5px solid var(--border); border-radius: var(--radius); padding: 16px; margin-bottom: 16px; background: var(--bg-card); }
+.type-badge { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 6px; background: var(--accent-light); color: var(--accent); text-transform: uppercase; }
+.set-chip { display:inline-flex; align-items:center; gap:4px; background: var(--bg-main); border: 1px solid var(--border); border-radius: 6px; padding: 4px 8px; margin: 4px 4px 4px 0; font-size: 12px; }
 .drop-chip { background:var(--accent-light); border-color:var(--accent); color:var(--accent); }
 .fail-chip { background:var(--red-light); border-color:var(--red); color:var(--red); text-decoration: line-through; }
-.fail-chip i { text-decoration: none; } 
-.pr-badge { font-size: 11px; font-weight: 700; background: rgba(34, 197, 94, 0.2); color: #4ADE80; border-radius: 5px; padding: 2px 7px; margin-left: 6px; letter-spacing: .04em; }
+.pr-badge { font-size: 11px; font-weight: 700; background: rgba(34, 197, 94, 0.2); color: #4ADE80; border-radius: 5px; padding: 2px 7px; margin-left: 6px; }
 .vol-pill { font-size: 12px; font-weight: 600; color: var(--text-main); background: var(--bg-main); border-radius: 6px; padding: 4px 10px; border: 1px solid var(--border); }
 
+/* STATS */
 .stat-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:1.5rem; }
 .stat-card { background: var(--bg-card); border-radius: var(--radius); padding: 16px; border: 1.5px solid var(--border); text-align: center; }
-.stat-lbl { font-size:11px; color:var(--text-muted); margin-bottom:6px; text-transform:uppercase; letter-spacing:.06em; font-weight:600; }
 .stat-val { font-size:24px; font-weight:700; color: var(--accent); }
-.chart-wrap { position:relative; width:100%; height:240px; margin-bottom:1rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px; }
-.empty-state { text-align:center; padding:4rem 1rem; color:var(--text-muted); font-size:14px; }
-.ex-card-header .ti-barbell { color: var(--accent) !important; font-size: 20px; }
+.chart-wrap { height:240px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px; }
 </style>
 </head>
 <body>
@@ -144,13 +122,13 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent); box-sha
 <div id="auth-container">
   <div class="ex-card">
     <h2 style="margin: 0 0 4px; color: var(--accent); text-align: center;">SetForce Cloud</h2>
-    <p style="margin: 0 0 20px; font-size: 12px; color: var(--text-muted); text-align: center;">Login to sync your workouts.</p>
+    <p style="margin: 0 0 20px; font-size: 12px; color: var(--text-muted); text-align: center;">Pick a username to start tracking.</p>
     
-    <label class="field-label">Email</label>
-    <input type="email" id="auth-email" placeholder="you@email.com" style="margin-bottom: 12px;">
+    <label class="field-label">Username</label>
+    <input type="text" id="auth-username" placeholder="e.g., Seth_Lifts" style="margin-bottom: 12px;">
     
     <label class="field-label">Password</label>
-    <input type="password" id="auth-password" placeholder="••••••••" style="margin-bottom: 20px;">
+    <input type="password" id="auth-password" placeholder="Min. 6 characters" style="margin-bottom: 20px;">
     
     <button class="save-btn" onclick="login()" style="margin-bottom: 12px;">Log In</button>
     <button class="add-row-btn" onclick="register()">Create Account</button>
@@ -161,58 +139,42 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent); box-sha
 
 <div id="app-container" style="display:none; padding:1rem 0 0; max-width: 600px; margin: 0 auto;">
   
-  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 16px; padding: 0 4px;">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 16px;">
     <div style="font-size: 13px; color: var(--text-muted);">Welcome, <span id="user-display" style="color: var(--text-main); font-weight: 600;"></span></div>
-    <button class="icon-btn" onclick="logout()" title="Sign Out" style="width: auto; padding: 0 10px; font-size: 12px; gap: 4px;"><i class="ti ti-logout"></i> Sign out</button>
+    <button class="icon-btn" onclick="logout()" style="width: auto; padding: 0 10px; font-size: 11px;"><i class="ti ti-logout" style="margin-right:4px;"></i> Sign out</button>
   </div>
 
-  <nav class="nav" aria-label="Tracker sections">
-    <button class="nav-btn active" onclick="switchTab('log')"><i class="ti ti-pencil" style="margin-right:6px;font-size:14px;vertical-align:-1px;"></i>Log</button>
-    <button class="nav-btn" onclick="switchTab('history')"><i class="ti ti-history" style="margin-right:6px;font-size:14px;vertical-align:-1px;"></i>History</button>
-    <button class="nav-btn" onclick="switchTab('progress')"><i class="ti ti-chart-line" style="margin-right:6px;font-size:14px;vertical-align:-1px;"></i>Progress</button>
-    <button class="nav-btn" onclick="switchTab('routines')"><i class="ti ti-template" style="margin-right:6px;font-size:14px;vertical-align:-1px;"></i>Routines</button>
+  <nav class="nav">
+    <button class="nav-btn active" onclick="switchTab('log')">Log</button>
+    <button class="nav-btn" onclick="switchTab('history')">History</button>
+    <button class="nav-btn" onclick="switchTab('progress')">Progress</button>
+    <button class="nav-btn" onclick="switchTab('routines')">Routines</button>
   </nav>
 
   <div id="tab-log" class="section active">
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:1.5rem;">
-      <div><label class="field-label">Date</label><input type="date" id="log-date"></div>
-      <div><label class="field-label">Workout type</label>
-        <select id="log-type" onchange="handleTypeChange()">
-          <option>Custom</option>
-        </select>
-      </div>
+      <input type="date" id="log-date">
+      <select id="log-type" onchange="handleTypeChange()"><option>Custom</option></select>
     </div>
     <div id="exercises-container"></div>
-    <button class="add-ex-btn" onclick="addExercise()"><i class="ti ti-plus" style="margin-right: 4px;"></i> Add exercise</button>
-    <div>
-      <label class="field-label">Session notes</label>
-      <textarea id="log-notes" style="height:60px; resize:vertical;" placeholder="How did it go?"></textarea>
-    </div>
-    <button id="save-btn" class="save-btn" onclick="saveWorkout()" style="margin-top:12px;"><i class="ti ti-device-floppy" style="margin-right:6px;"></i>Save workout</button>
+    <button class="add-ex-btn" onclick="addExercise()"><i class="ti ti-plus"></i> Add Exercise</button>
+    <textarea id="log-notes" style="height:60px; margin-bottom:12px;" placeholder="Session notes..."></textarea>
+    <button id="save-btn" class="save-btn" onclick="saveWorkout()">Save Workout</button>
     <div class="save-msg" id="log-msg"></div>
   </div>
 
   <div id="tab-history" class="section">
-    <div style="display:flex; gap:12px; margin-bottom:1.5rem;">
-      <select id="hist-filter" onchange="renderHistory()" style="flex:1;">
-        <option value="">All workout types</option>
-        <option>Custom</option>
-      </select>
-    </div>
+    <select id="hist-filter" onchange="renderHistory()" style="margin-bottom:1.5rem;"><option value="">All Workout Types</option></select>
     <div id="history-list"></div>
   </div>
 
   <div id="tab-progress" class="section">
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:1.5rem;">
-      <div><label class="field-label">Exercise</label><select id="prog-exercise" onchange="renderProgress()"></select></div>
-      <div><label class="field-label">Metric</label>
-        <select id="prog-metric" onchange="renderProgress()">
-          <option value="max">Max weight (lbs)</option>
-          <option value="maxReps">Max reps in a set</option>
-          <option value="vol">Total volume (lbs)</option>
-          <option value="reps">Total reps (session)</option>
-        </select>
-      </div>
+      <select id="prog-exercise" onchange="renderProgress()"></select>
+      <select id="prog-metric" onchange="renderProgress()">
+        <option value="max">Max weight (lbs)</option>
+        <option value="vol">Total volume (lbs)</option>
+      </select>
     </div>
     <div class="stat-grid" id="prog-stats"></div>
     <div class="chart-wrap"><canvas id="prog-chart"></canvas></div>
@@ -220,22 +182,12 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent); box-sha
 
   <div id="tab-routines" class="section">
     <div class="log-entry">
-      <label class="field-label">Routine Builder</label>
-      <input type="text" id="routine-name" placeholder="e.g., Push Day A" style="margin-bottom:16px;">
-      
-      <div class="set-cols-header" style="grid-template-columns: 1fr 50px 50px 98px; margin-bottom:8px;">
-        <span class="col-lbl" style="text-align:left;">Exercise Name</span>
-        <span class="col-lbl">Sets</span>
-        <span class="col-lbl">Reps</span>
-        <span></span>
-      </div>
+      <input type="text" id="routine-name" placeholder="Routine Name" style="margin-bottom:16px;">
       <div id="routine-exercises-container"></div>
-      <button class="add-row-btn" onclick="addRoutineExercise()"><i class="ti ti-plus"></i> Add exercise to routine</button>
-      
-      <button id="save-routine-btn" class="save-btn" onclick="saveRoutine()" style="margin-top:16px;"><i class="ti ti-device-floppy"></i> Save Routine</button>
+      <button class="add-row-btn" onclick="addRoutineExercise()">+ Add exercise to routine</button>
+      <button id="save-routine-btn" class="save-btn" onclick="saveRoutine()" style="margin-top:16px;">Save Routine</button>
       <div class="save-msg" id="routine-msg"></div>
     </div>
-    <h3 style="font-size:13px; font-weight:600; margin: 24px 0 12px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em;">Saved Routines</h3>
     <div id="routines-list"></div>
   </div>
 </div>
@@ -243,37 +195,26 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent); box-sha
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 
 <script type="module">
-  // Import Firebase Modules (v10 SDK)
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
   import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
   import { getFirestore, collection, doc, setDoc, deleteDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
-  // Your Firebase config
   const firebaseConfig = {
     apiKey: "AIzaSyAsWi38XXFe_aSaqo9fFm38-o7DC8MJNxk",
     authDomain: "workout-tracker-6d55b.firebaseapp.com",
     projectId: "workout-tracker-6d55b",
     storageBucket: "workout-tracker-6d55b.firebasestorage.app",
     messagingSenderId: "1045536771108",
-    appId: "1:1045536771108:web:3d5d3fb1470e57cbe31cb1",
-    measurementId: "G-XPJGSMEC5N"
+    appId: "1:1045536771108:web:3d5d3fb1470e57cbe31cb1"
   };
 
-  // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
   const db = getFirestore(app);
 
-  // Global App State
-  let currentUser = null;
-  let workouts = [];
-  let templates = [];
-  let progChart = null;
-  let exCount = 0;
-  let editingWorkoutId = null;
-  let editingRoutineId = null;
+  let currentUser = null, workouts = [], templates = [], progChart = null, exCount = 0, editingWorkoutId = null, editingRoutineId = null;
 
-  // --- AUTHENTICATION LOGIC ---
+  // --- USERNAME AUTH LOGIC ---
   onAuthStateChanged(auth, async (user) => {
     if (user) {
       currentUser = user;
@@ -289,54 +230,35 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent); box-sha
   });
 
   window.login = async function() {
-    const email = document.getElementById('auth-email').value;
+    const user = document.getElementById('auth-username').value.trim();
     const pass = document.getElementById('auth-password').value;
-    const msg = document.getElementById('auth-msg');
-    try {
-      await signInWithEmailAndPassword(auth, email, pass);
-      msg.textContent = "";
-    } catch (e) {
-      msg.textContent = "Error: Invalid email or password.";
-    }
+    if (!user) return alert("Enter username");
+    try { await signInWithEmailAndPassword(auth, user + "@setforce.app", pass); } 
+    catch (e) { document.getElementById('auth-msg').textContent = "Invalid username or password."; }
   };
 
   window.register = async function() {
-    const email = document.getElementById('auth-email').value;
+    const user = document.getElementById('auth-username').value.trim();
     const pass = document.getElementById('auth-password').value;
-    const msg = document.getElementById('auth-msg');
-    try {
-      await createUserWithEmailAndPassword(auth, email, pass);
-      msg.textContent = "";
-    } catch (e) {
-      msg.textContent = "Error: Password must be 6+ chars, or email taken.";
-    }
+    if (!user) return alert("Pick a username");
+    if (pass.length < 6) return alert("Password must be 6+ characters");
+    try { await createUserWithEmailAndPassword(auth, user + "@setforce.app", pass); } 
+    catch (e) { document.getElementById('auth-msg').textContent = "Username taken or invalid."; }
   };
 
-  window.logout = async function() {
-    await signOut(auth);
-    workouts = []; templates = []; // clear local data
-    document.getElementById('auth-email').value = '';
-    document.getElementById('auth-password').value = '';
-  };
+  window.logout = () => signOut(auth);
 
-  // --- DATABASE LOAD LOGIC ---
+  // --- CORE APP LOGIC ---
   async function loadUserData() {
-    workouts = [];
-    templates = [];
-    
-    // Fetch Workouts
+    workouts = []; templates = [];
     const wSnap = await getDocs(collection(db, "users", currentUser.uid, "workouts"));
     wSnap.forEach(doc => workouts.push(doc.data()));
     workouts.sort((a, b) => b.date.localeCompare(a.date));
-
-    // Fetch Routines
     const tSnap = await getDocs(collection(db, "users", currentUser.uid, "templates"));
     tSnap.forEach(doc => templates.push(doc.data()));
-
     initApp();
   }
 
-  // --- APP UI LOGIC ---
   function initApp() {
     document.getElementById('log-date').value = new Date().toISOString().split('T')[0];
     updateTypeDropdown();
@@ -348,369 +270,185 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent); box-sha
     renderHistory();
   }
 
-  window.switchTab = function(name) {
-    document.querySelectorAll('.nav-btn').forEach((b,i) => b.classList.toggle('active', ['log','history','progress','routines'][i] === name));
+  window.switchTab = (n) => {
+    document.querySelectorAll('.nav-btn').forEach((b,i) => b.classList.toggle('active', ['log','history','progress','routines'][i] === n));
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-    document.getElementById('tab-' + name).classList.add('active');
-    if (name === 'history') renderHistory();
-    if (name === 'progress') renderProgress();
-    if (name === 'routines') renderRoutines();
+    document.getElementById('tab-' + n).classList.add('active');
+    if (n === 'history') renderHistory();
+    if (n === 'progress') renderProgress();
+    if (n === 'routines') renderRoutines();
   };
 
-  window.moveUp = function(btn) {
+  window.moveUp = (btn) => {
     const item = btn.closest('.ex-card') || btn.closest('.set-cols');
-    if (item && item.previousElementSibling) item.parentNode.insertBefore(item, item.previousElementSibling);
+    if (item?.previousElementSibling) item.parentNode.insertBefore(item, item.previousElementSibling);
   };
 
-  window.moveDown = function(btn) {
+  window.moveDown = (btn) => {
     const item = btn.closest('.ex-card') || btn.closest('.set-cols');
-    if (item && item.nextElementSibling) item.parentNode.insertBefore(item.nextElementSibling, item);
+    if (item?.nextElementSibling) item.parentNode.insertBefore(item.nextElementSibling, item);
   };
 
   function updateTypeDropdown() {
     const sel = document.getElementById('log-type');
-    const currentVal = sel.value;
     sel.innerHTML = '<option>Custom</option>';
-    
     if (templates.length) {
-      const group = document.createElement('optgroup');
-      group.label = "My Routines";
-      templates.forEach(t => group.appendChild(new Option(t.name, t.name)));
-      sel.appendChild(group);
+      const g = document.createElement('optgroup'); g.label = "Routines";
+      templates.forEach(t => g.appendChild(new Option(t.name, t.name)));
+      sel.appendChild(g);
     }
-    if (currentVal && Array.from(sel.options).some(o => o.value === currentVal)) sel.value = currentVal;
   }
 
-  window.handleTypeChange = function() {
-    const val = document.getElementById('log-type').value;
-    const t = templates.find(x => x.name === val);
+  window.handleTypeChange = () => {
+    const t = templates.find(x => x.name === document.getElementById('log-type').value);
     if (t) {
-      document.getElementById('exercises-container').innerHTML = '';
-      exCount = 0;
+      document.getElementById('exercises-container').innerHTML = ''; exCount = 0;
       t.exercises.forEach(ex => addExercise(ex.name, ex.sets));
     }
   };
 
-  window.addExercise = function(name='', sets=[{w:'',r:'',drop:false, fail:false}]) {
-    exCount++;
-    const id = exCount;
-    const c = document.getElementById('exercises-container');
-    const div = document.createElement('div');
-    div.id = 'ex-' + id;
-    div.className = 'ex-card';
+  window.addExercise = (name='', sets=[{w:'',r:'',drop:false, fail:false}]) => {
+    exCount++; const id = exCount;
+    const div = document.createElement('div'); div.className = 'ex-card'; div.id = `ex-${id}`;
     div.innerHTML = `
       <div class="ex-card-header">
-        <i class="ti ti-barbell"></i>
-        <input type="text" id="exname-${id}" value="${name}" placeholder="Exercise name">
-        <button class="icon-btn" onclick="moveUp(this)" title="Move Up"><i class="ti ti-arrow-up"></i></button>
-        <button class="icon-btn" onclick="moveDown(this)" title="Move Down"><i class="ti ti-arrow-down"></i></button>
-        <button class="icon-btn" onclick="this.closest('.ex-card').remove()" title="Delete"><i class="ti ti-trash"></i></button>
+        <i class="ti ti-barbell" style="color:var(--accent);"></i>
+        <input type="text" id="exname-${id}" value="${name}" placeholder="Exercise Name">
+        <button class="icon-btn" onclick="moveUp(this)"><i class="ti ti-arrow-up"></i></button>
+        <button class="icon-btn" onclick="moveDown(this)"><i class="ti ti-arrow-down"></i></button>
+        <button class="icon-btn" onclick="this.closest('.ex-card').remove()"><i class="ti ti-trash"></i></button>
       </div>
-      <div class="set-cols-header">
-        <span></span><span class="col-lbl">Weight</span><span class="col-lbl">Reps</span>
-        <span class="col-lbl">Drop</span><span class="col-lbl" style="line-height:1.2;">Fail<br><span style="font-size:8px;text-transform:none;opacity:0.8;font-weight:500;">(Last Rep)</span></span><span></span>
-      </div>
+      <div class="set-cols-header"><span></span><span class="col-lbl">Weight</span><span class="col-lbl">Reps</span><span class="col-lbl">Drop</span><span class="col-lbl">Fail</span><span></span></div>
       <div id="sets-${id}"></div>
-      <button class="add-row-btn" onclick="addSet(${id})"><i class="ti ti-plus"></i> Add set</button>
-    `;
-    c.appendChild(div);
+      <button class="add-row-btn" onclick="addSet(${id})">+ Add Set</button>`;
+    document.getElementById('exercises-container').appendChild(div);
     sets.forEach(s => addSet(id, s.w, s.r, s.drop, s.fail));
   };
 
-  window.addSet = function(exId, w='', r='', drop=false, fail=false) {
+  window.addSet = (exId, w='', r='', drop=false, fail=false) => {
     const cont = document.getElementById('sets-' + exId);
-    const n = cont.children.length + 1;
-    const row = document.createElement('div');
-    row.className = 'set-cols';
+    const row = document.createElement('div'); row.className = 'set-cols';
     row.innerHTML = `
-      <span class="set-num">${n}</span>
-      <input type="number" placeholder="135" value="${w}" min="0" step="2.5">
-      <input type="number" placeholder="8" value="${r}" min="1" max="200">
-      <button class="toggle-btn toggle-drop${drop?' on':''}" onclick="toggleDrop(this)" aria-pressed="${drop}">
-        <i class="ti ti-arrow-down"></i><span>${drop?'Drop':'Norm'}</span>
-      </button>
-      <button class="toggle-btn toggle-fail${fail?' on':''}" onclick="toggleFail(this)" aria-pressed="${fail}">
-        <i class="ti ti-x"></i><span>${fail?'Fail':'Pass'}</span>
-      </button>
-      <button class="icon-btn" onclick="this.closest('.set-cols').remove(); renumber(${exId})"><i class="ti ti-trash" style="font-size:12px;"></i></button>
-    `;
+      <span class="set-num">${cont.children.length + 1}</span>
+      <input type="number" placeholder="0" value="${w}">
+      <input type="number" placeholder="0" value="${r}">
+      <button class="toggle-btn toggle-drop${drop?' on':''}" onclick="toggleToggle(this)">${drop?'Drop':'Norm'}</button>
+      <button class="toggle-btn toggle-fail${fail?' on':''}" onclick="toggleToggle(this)">${fail?'Fail':'Pass'}</button>
+      <button class="icon-btn" onclick="this.closest('.set-cols').remove(); renumber(${exId})"><i class="ti ti-trash"></i></button>`;
     cont.appendChild(row);
   };
 
-  window.toggleDrop = function(btn) {
+  window.toggleToggle = (btn) => {
     const on = btn.classList.toggle('on');
-    btn.setAttribute('aria-pressed', on);
-    btn.querySelector('span').textContent = on ? 'Drop' : 'Norm';
+    if (btn.classList.contains('toggle-drop')) btn.textContent = on ? 'Drop' : 'Norm';
+    else btn.textContent = on ? 'Fail' : 'Pass';
   };
 
-  window.toggleFail = function(btn) {
-    const on = btn.classList.toggle('on');
-    btn.setAttribute('aria-pressed', on);
-    btn.querySelector('span').textContent = on ? 'Fail' : 'Pass';
-  };
+  window.renumber = (id) => document.querySelectorAll(`#sets-${id} .set-num`).forEach((s,i) => s.textContent = i+1);
 
-  window.renumber = function(exId) {
-    document.querySelectorAll(`#sets-${exId} .set-cols`).forEach((r,i) => r.querySelector('.set-num').textContent = i+1);
-  };
-
-  function getExercises() {
-    return Array.from(document.querySelectorAll('[id^="ex-"]')).map(div => {
+  window.saveWorkout = async () => {
+    const exercises = Array.from(document.querySelectorAll('[id^="ex-"]')).map(div => {
       const id = div.id.split('-')[1];
-      const name = document.getElementById('exname-' + id).value.trim();
-      const sets = Array.from(div.querySelectorAll('.set-cols')).map(row => {
-        const inputs = row.querySelectorAll('input');
-        return { 
-          w: parseFloat(inputs[0].value)||0, r: parseInt(inputs[1].value)||0, 
-          drop: row.querySelector('.toggle-drop').classList.contains('on'),
-          fail: row.querySelector('.toggle-fail').classList.contains('on')
-        };
-      }).filter(s => s.r > 0 || s.w > 0);
-      return { name, sets };
+      return { 
+        name: document.getElementById('exname-' + id).value,
+        sets: Array.from(div.querySelectorAll('.set-cols')).map(r => ({
+          w: parseFloat(r.querySelectorAll('input')[0].value)||0,
+          r: parseInt(r.querySelectorAll('input')[1].value)||0,
+          drop: r.querySelector('.toggle-drop').classList.contains('on'),
+          fail: r.querySelector('.toggle-fail').classList.contains('on')
+        })).filter(s => s.r > 0)
+      };
     }).filter(e => e.sets.length > 0);
-  }
 
-  // --- SAVE/DELETE LOGIC (WITH FIRESTORE) ---
-  window.saveWorkout = async function() {
-    const date = document.getElementById('log-date').value;
-    const type = document.getElementById('log-type').value;
-    const notes = document.getElementById('log-notes').value;
-    const exercises = getExercises();
+    if (!exercises.length) return alert("Add some work!");
+    const workoutObj = { id: editingWorkoutId || Date.now(), date: document.getElementById('log-date').value, type: document.getElementById('log-type').value, notes: document.getElementById('log-notes').value, exercises };
     
-    if (!exercises.length) return showMsg('log-msg', 'Add at least one exercise.', true);
-    
-    document.getElementById('save-btn').textContent = "Saving to Cloud...";
-    
-    const workoutObj = { id: editingWorkoutId || Date.now(), date, type, notes, exercises };
-
-    try {
-      // Save to Firebase
-      await setDoc(doc(db, "users", currentUser.uid, "workouts", workoutObj.id.toString()), workoutObj);
-
-      // Update Local
-      if (editingWorkoutId) {
-        const idx = workouts.findIndex(w => w.id === editingWorkoutId);
-        if (idx !== -1) workouts[idx] = workoutObj;
-        editingWorkoutId = null;
-      } else {
-        workouts.unshift(workoutObj);
-      }
-      workouts.sort((a, b) => b.date.localeCompare(a.date));
-      
-      // Reset UI
-      document.getElementById('exercises-container').innerHTML = '';
-      document.getElementById('log-notes').value = '';
-      exCount = 0;
-      const t = templates.find(x => x.name === type);
-      if(t) t.exercises.forEach(ex => window.addExercise(ex.name, ex.sets));
-      else window.addExercise();
-
-      document.getElementById('save-btn').innerHTML = '<i class="ti ti-device-floppy" style="margin-right:6px;"></i>Save workout';
-      showMsg('log-msg', 'Saved to Cloud!');
-    } catch (e) {
-      document.getElementById('save-btn').innerHTML = '<i class="ti ti-device-floppy" style="margin-right:6px;"></i>Save workout';
-      showMsg('log-msg', 'Cloud save failed.', true);
-    }
+    await setDoc(doc(db, "users", currentUser.uid, "workouts", workoutObj.id.toString()), workoutObj);
+    showMsg('log-msg', 'Synced to Cloud!');
+    loadUserData();
   };
 
-  window.editWorkout = function(id) {
-    const w = workouts.find(x => x.id === id);
-    if (!w) return;
-    editingWorkoutId = id;
-    document.getElementById('log-date').value = w.date;
-    
-    const sel = document.getElementById('log-type');
-    if(!Array.from(sel.options).some(o => o.value === w.type)) sel.add(new Option(w.type, w.type));
-    sel.value = w.type || 'Custom';
-    
-    document.getElementById('log-notes').value = w.notes || '';
-    document.getElementById('exercises-container').innerHTML = '';
-    exCount = 0;
-    
-    w.exercises.forEach(ex => window.addExercise(ex.name, ex.sets));
-    document.getElementById('save-btn').innerHTML = '<i class="ti ti-device-floppy" style="margin-right:6px;"></i>Update in Cloud';
-    window.switchTab('log');
-    window.scrollTo(0, 0);
-  };
-
-  window.deleteWorkout = async function(id) {
-    if(!confirm("Delete this workout?")) return;
-    try {
-      await deleteDoc(doc(db, "users", currentUser.uid, "workouts", id.toString()));
-      workouts = workouts.filter(w=>w.id!==id);
-      window.renderHistory();
-    } catch(e) { alert("Error deleting from cloud."); }
-  };
-
-  // --- ROUTINES LOGIC ---
-  window.addRoutineExercise = function(name='', sets=3, reps='') {
-    const c = document.getElementById('routine-exercises-container');
-    const div = document.createElement('div');
-    div.className = 'set-cols';
-    div.style.gridTemplateColumns = "1fr 50px 50px auto";
-    div.innerHTML = `
-      <input type="text" placeholder="Exercise name" value="${name}">
-      <input type="number" placeholder="Sets" value="${sets}" min="1">
-      <input type="number" placeholder="Reps" value="${reps}" min="1">
-      <div style="display:flex; gap:4px;">
-        <button class="icon-btn" onclick="moveUp(this)"><i class="ti ti-arrow-up"></i></button>
-        <button class="icon-btn" onclick="moveDown(this)"><i class="ti ti-arrow-down"></i></button>
-        <button class="icon-btn" onclick="this.closest('.set-cols').remove()"><i class="ti ti-trash"></i></button>
-      </div>
-    `;
-    c.appendChild(div);
-  };
-
-  window.saveRoutine = async function() {
-    const name = document.getElementById('routine-name').value.trim();
-    if (!name) return showMsg('routine-msg', 'Please enter a routine name.', true);
-    
-    const rows = Array.from(document.getElementById('routine-exercises-container').children);
-    const exercises = rows.map(r => {
-      const inputs = r.querySelectorAll('input');
-      const setCnt = parseInt(inputs[1].value) || 1;
-      const sets = Array(setCnt).fill({w:'', r:inputs[2].value, drop:false, fail:false});
-      return { name: inputs[0].value.trim(), sets };
-    }).filter(e => e.name);
-
-    if (!exercises.length) return showMsg('routine-msg', 'Add at least one exercise.', true);
-    document.getElementById('save-routine-btn').textContent = "Saving...";
-
-    let routineId = editingRoutineId || Date.now();
-    const existingIndex = templates.findIndex(t => t.name.toLowerCase() === name.toLowerCase());
-    if (existingIndex !== -1 && !editingRoutineId) routineId = templates[existingIndex].id; // Overwrite if same name
-
-    const templateObj = { id: routineId, name, exercises };
-
-    try {
-      await setDoc(doc(db, "users", currentUser.uid, "templates", routineId.toString()), templateObj);
-      
-      if (editingRoutineId) {
-        templates[templates.findIndex(t => t.id === editingRoutineId)] = templateObj;
-        editingRoutineId = null;
-      } else if (existingIndex !== -1) {
-        templates[existingIndex] = templateObj;
-      } else {
-        templates.push(templateObj);
-      }
-
-      document.getElementById('routine-name').value = '';
-      document.getElementById('routine-exercises-container').innerHTML = '';
-      window.addRoutineExercise();
-      updateTypeDropdown();
-      window.renderRoutines();
-      
-      document.getElementById('save-routine-btn').innerHTML = '<i class="ti ti-device-floppy"></i> Save Routine';
-      showMsg('routine-msg', 'Routine Saved to Cloud!');
-    } catch (e) {
-      document.getElementById('save-routine-btn').innerHTML = '<i class="ti ti-device-floppy"></i> Save Routine';
-      showMsg('routine-msg', 'Error saving routine.', true);
-    }
-  };
-
-  window.editRoutine = function(id) {
-    const t = templates.find(x => x.id === id);
-    if (!t) return;
-    editingRoutineId = id;
-    document.getElementById('routine-name').value = t.name;
-    document.getElementById('routine-exercises-container').innerHTML = '';
-    t.exercises.forEach(ex => window.addRoutineExercise(ex.name, ex.sets.length, ex.sets[0]?.r || ''));
-    document.getElementById('save-routine-btn').innerHTML = '<i class="ti ti-device-floppy"></i> Update Routine in Cloud';
-    window.scrollTo(0, 0);
-  };
-
-  window.deleteRoutine = async function(id) {
-    if(!confirm("Delete this routine?")) return;
-    try {
-      await deleteDoc(doc(db, "users", currentUser.uid, "templates", id.toString()));
-      templates = templates.filter(t => t.id !== id);
-      updateTypeDropdown();
-      window.renderRoutines();
-    } catch(e) { alert("Error deleting from cloud."); }
-  };
-
-  // --- RENDER FUNCTIONS ---
-  window.renderRoutines = function() {
-    const list = document.getElementById('routines-list');
-    if (!templates.length) return list.innerHTML = '<div class="empty-state">No routines created yet.</div>';
-    list.innerHTML = templates.map(t => `
-      <div class="log-entry" style="display:flex; justify-content:space-between; align-items:center; padding: 12px 16px;">
-        <div>
-          <div style="font-weight:600; font-size:15px; color:var(--accent);">${t.name}</div>
-          <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">${t.exercises.length} exercise${t.exercises.length>1?'s':''}</div>
+  window.renderHistory = () => {
+    const list = document.getElementById('history-list');
+    list.innerHTML = workouts.map(w => `
+      <div class="log-entry">
+        <div style="display:flex; justify-content:space-between; margin-bottom:12px;">
+          <div><span class="type-badge">${w.type}</span> <span style="font-size:12px; color:var(--text-muted);">${w.date}</span></div>
+          <div>
+            <button class="icon-btn" style="display:inline-flex;" onclick="editWorkout(${w.id})"><i class="ti ti-pencil"></i></button>
+            <button class="icon-btn" style="display:inline-flex;" onclick="deleteWorkout(${w.id})"><i class="ti ti-trash"></i></button>
+          </div>
         </div>
-        <div style="display:flex; gap:8px;">
-          <button class="icon-btn" onclick="editRoutine(${t.id})"><i class="ti ti-pencil"></i></button>
-          <button class="icon-btn" onclick="deleteRoutine(${t.id})"><i class="ti ti-trash"></i></button>
-        </div>
+        ${w.exercises.map(e => `
+          <div style="margin-bottom:8px;">
+            <div style="font-weight:600; font-size:14px;">${e.name}</div>
+            ${e.sets.map((s,i) => `<span class="set-chip ${s.drop?'drop-chip':''} ${s.fail?'fail-chip':''}">${i+1}: ${s.w}x${s.r}</span>`).join('')}
+          </div>
+        `).join('')}
       </div>
     `).join('');
   };
 
-  window.renderHistory = function() {
-    const filter = document.getElementById('hist-filter').value;
-    const list = document.getElementById('history-list');
-    const sel = document.getElementById('hist-filter');
-    [...new Set(workouts.map(w=>w.type))].forEach(t => { if(t && !Array.from(sel.options).some(o=>o.value===t)) sel.add(new Option(t,t)); });
-
-    const data = filter ? workouts.filter(w=>w.type===filter) : workouts;
-    if (!data.length) return list.innerHTML = '<div class="empty-state">No workouts yet — head to Log to get started.</div>';
-    
-    list.innerHTML = data.map(w => {
-      const dateStr = new Date(w.date+'T12:00:00').toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
-      const totalVol = w.exercises.reduce((a,e)=>a+e.sets.reduce((b,s)=>b+s.w*s.r,0),0);
-      const exHtml = w.exercises.map(e => {
-        const isPR = !workouts.filter(x=>x.id!==w.id && x.date < w.date).some(x=>x.exercises.some(y=>y.name===e.name && Math.max(...y.sets.map(s=>s.w)) >= Math.max(...e.sets.map(s=>s.w))));
-        return `<div style="margin-bottom:10px;"><span style="font-size:14px;font-weight:600;">${e.name}</span>${isPR && Math.max(...e.sets.map(s=>s.w))>0 ?'<span class="pr-badge">PR</span>':''}<div style="margin-top:6px;">${e.sets.map((s,i)=>`<span class="set-chip${s.drop?' drop-chip':''}${s.fail?' fail-chip':''}">${s.drop?'<i class="ti ti-arrow-down" style="font-size:12px;"></i>':''}${s.fail?'<i class="ti ti-x" style="font-size:12px;"></i>':''} ${i+1}: ${s.w}×${s.r}</span>`).join('')}</div></div>`;
-      }).join('');
-      return `
-      <div class="log-entry">
-        <div class="log-header">
-          <div><span class="type-badge">${w.type||'Custom'}</span><span style="font-size:13px;color:var(--text-muted);margin-left:10px;">${dateStr}</span></div>
-          <div style="display:flex;gap:6px;"><button class="icon-btn" onclick="editWorkout(${w.id})"><i class="ti ti-pencil"></i></button><button class="icon-btn" onclick="deleteWorkout(${w.id})"><i class="ti ti-trash"></i></button></div>
-        </div>
-        <div style="border-top:1px solid var(--border);padding-top:12px;">${exHtml}</div>
-        ${w.notes?`<div style="font-size:13px;color:var(--text-muted);border-top:1px solid var(--border);padding-top:10px;margin-top:6px;">${w.notes}</div>`:''}
-      </div>`;
-    }).join('');
+  window.editWorkout = (id) => {
+    const w = workouts.find(x => x.id === id);
+    editingWorkoutId = id;
+    document.getElementById('log-date').value = w.date;
+    document.getElementById('log-notes').value = w.notes;
+    document.getElementById('exercises-container').innerHTML = '';
+    w.exercises.forEach(e => addExercise(e.name, e.sets));
+    switchTab('log');
   };
 
-  window.renderProgress = function() {
-    const sel = document.getElementById('prog-exercise');
-    const names = [...new Set(workouts.flatMap(w=>w.exercises.map(e=>e.name)))].sort();
-    if (!names.length) return document.getElementById('prog-stats').innerHTML='<p style="color:var(--text-muted);font-size:13px;grid-column:1/-1;text-align:center;">No data yet.</p>';
-    
-    const cur = sel.value;
-    sel.innerHTML = names.map(n=>`<option${n===cur?' selected':''}>${n}</option>`).join('');
-    const metric = document.getElementById('prog-metric').value;
-    const pts = workouts.filter(w=>w.exercises.some(e=>e.name===sel.value)).map(w => {
-      const ex = w.exercises.find(e=>e.name===sel.value);
-      const v = metric==='max'?Math.max(...ex.sets.map(s=>s.w)):metric==='maxReps'?Math.max(...ex.sets.map(s=>s.r)):metric==='vol'?ex.sets.reduce((a,s)=>a+s.w*s.r,0):ex.sets.reduce((a,s)=>a+s.r,0);
-      return {date:w.date, v};
-    }).sort((a,b)=>a.date.localeCompare(b.date));
-      
-    if (!pts.length) return;
-    const vals = pts.map(p=>p.v);
-    const lbl = (metric === 'reps' || metric === 'maxReps') ? 'reps' : 'lbs';
-    
-    document.getElementById('prog-stats').innerHTML = `
-      <div class="stat-card"><div class="stat-lbl">Best ever</div><div class="stat-val">${Math.round(Math.max(...vals))} <span style="font-size:13px;color:var(--text-muted);">${lbl}</span></div></div>
-      <div class="stat-card"><div class="stat-lbl">Latest</div><div class="stat-val">${Math.round(vals[vals.length-1])} <span style="font-size:13px;color:var(--text-muted);">${lbl}</span></div></div>
-      <div class="stat-card"><div class="stat-lbl">Sessions</div><div class="stat-val">${pts.length}</div></div>
-    `;
-    
+  window.deleteWorkout = async (id) => {
+    if (confirm("Delete?")) {
+      await deleteDoc(doc(db, "users", currentUser.uid, "workouts", id.toString()));
+      loadUserData();
+    }
+  };
+
+  window.addRoutineExercise = (n='', s=3, r='') => {
+    const div = document.createElement('div'); div.className = 'set-cols'; div.style.gridTemplateColumns = "1fr 50px 50px auto";
+    div.innerHTML = `<input type="text" placeholder="Exercise" value="${n}"><input type="number" placeholder="Sets" value="${s}"><input type="number" placeholder="Reps" value="${r}"><div style="display:flex; gap:4px;"><button class="icon-btn" onclick="moveUp(this)"><i class="ti ti-arrow-up"></i></button><button class="icon-btn" onclick="moveDown(this)"><i class="ti ti-arrow-down"></i></button><button class="icon-btn" onclick="this.closest('.set-cols').remove()"><i class="ti ti-trash"></i></button></div>`;
+    document.getElementById('routine-exercises-container').appendChild(div);
+  };
+
+  window.saveRoutine = async () => {
+    const name = document.getElementById('routine-name').value;
+    const exercises = Array.from(document.getElementById('routine-exercises-container').children).map(r => {
+      const i = r.querySelectorAll('input');
+      return { name: i[0].value, sets: Array(parseInt(i[1].value)||1).fill({w:'', r:i[2].value, drop:false, fail:false}) };
+    }).filter(e => e.name);
+    await setDoc(doc(db, "users", currentUser.uid, "templates", Date.now().toString()), { id: Date.now(), name, exercises });
+    loadUserData();
+    showMsg('routine-msg', 'Routine Saved!');
+  };
+
+  window.renderRoutines = () => {
+    document.getElementById('routines-list').innerHTML = templates.map(t => `<div class="log-entry" style="display:flex; justify-content:space-between;"><div><b>${t.name}</b><br><small>${t.exercises.length} exercises</small></div><button class="icon-btn" onclick="deleteRoutine(${t.id})"><i class="ti ti-trash"></i></button></div>`).join('');
+  };
+
+  window.deleteRoutine = async (id) => {
+    await deleteDoc(doc(db, "users", currentUser.uid, "templates", id.toString()));
+    loadUserData();
+  };
+
+  window.renderProgress = () => {
+    const ex = document.getElementById('prog-exercise');
+    const names = [...new Set(workouts.flatMap(w => w.exercises.map(e => e.name)))].sort();
+    ex.innerHTML = names.map(n => `<option>${n}</option>`).join('');
+    const pts = workouts.filter(w => w.exercises.some(e => e.name === ex.value)).map(w => {
+      const e = w.exercises.find(x => x.name === ex.value);
+      return { d: w.date, v: Math.max(...e.sets.map(s => s.w)) };
+    }).sort((a,b) => a.d.localeCompare(b.d));
     if (progChart) progChart.destroy();
-    Chart.defaults.color = '#A3A3A3'; Chart.defaults.font.family = "'Inter', sans-serif";
     progChart = new Chart(document.getElementById('prog-chart'), {
-      type:'line', data:{ labels: pts.map(p=>p.date.split('-').slice(1).join('/')), datasets:[{ data: pts.map(p=>Math.round(p.v)), borderColor:'#F97316', backgroundColor:'rgba(249, 115, 22, 0.1)', pointBackgroundColor:'#F97316', pointBorderColor:'#171717', pointBorderWidth:2, pointRadius:5, tension:0.3, fill:true }] },
-      options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false} }, scales:{ x:{grid:{display:false}}, y:{grid:{color:'#262626'}} } }
+      type: 'line',
+      data: { labels: pts.map(p => p.d.slice(5)), datasets: [{ data: pts.map(p => p.v), borderColor: '#F97316', tension: 0.3 }] },
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
     });
   };
 
-  function showMsg(id, msg, err=false) {
-    const el = document.getElementById(id); el.textContent = msg; el.style.color = err ? '#ef4444' : '#4ADE80';
-    setTimeout(() => el.textContent='', 2500);
-  }
-
+  function showMsg(id, m) { const el = document.getElementById(id); el.textContent = m; setTimeout(() => el.textContent='', 2000); }
 </script>
 </body>
 </html>
