@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SetForce Cloud Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+
+<style>
+:root {
+  --accent: #F97316;
+  --accent-light: rgba(249, 115, 22, 0.15);
+  --accent-mid: #EA580C;
+  --accent-glow: rgba(249, 115, 22, 0.25);
+  --bg-main: #0A0A0A; 
+  --bg-card: #171717; 
+  --border: #262626;
+  --border-light: #404040;
+  --text-main: #FAFAFA; 
+  --text-muted: #A3A3A3;
+  --red: #EF4444; --red-light: rgba(239, 68, 68, 0.15);
+  --font-main: 'Inter', sans-serif;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 4px 12px rgba(0,0,0,0.5);
+  --shadow-md: 0 8px 24px rgba(0,0,0,0.6);
+  color-scheme: dark; 
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  margin: 0;
+  padding: 0 16px; 
+}
+
+.sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); }
+
+/* AUTH SCREEN */
+#auth-container {
+  max-width: 400px;
+  margin: 15vh auto;
+}
+
+/* NAV */
+.nav {
+  display:flex; gap:3px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 4px;
+  margin-bottom: 1.5rem;
+}
+.nav-btn {
+  flex:1; background:none; border:none;
+  padding: 9px 6px; 
+  font-size: 13px; font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-radius: 10px;
+  font-family: var(--font-main);
+  transition: background .18s, color .18s, box-shadow .18s;
+}
+.nav-btn.active { background: var(--accent); color: #fff; box-shadow: 0 2px 8px var(--accent-glow); }
+.nav-btn:hover:not(.active) { background: rgba(255,255,255,0.05); color: var(--text-main); }
+
+.section { display:none; } .section.active { display:block; }
+
+/* INPUTS */
+.field-label { font-size: 11px; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 5px; text-transform: uppercase; }
+input[type=number], input[type=text], input[type=password], input[type=date], select, textarea {
+  font-family: var(--font-main); font-size: 14px; border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm); background: var(--bg-main); color: var(--text-main);
+  padding: 8px 10px; outline: none; width: 100%;
+}
+input:focus, select:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-light); }
+
+/* CARDS & BUTTONS */
+.ex-card { background: var(--bg-card); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 16px; margin-bottom: 16px; box-shadow: var(--shadow); }
+.ex-card-header { display:flex; align-items:center; gap:6px; margin-bottom:12px; }
+.ex-card-header input { flex:1; font-weight: 600; background: transparent; border: none; }
+.set-cols { display:grid; grid-template-columns:28px 1fr 1fr 74px 80px 28px; gap:6px; align-items:center; margin-bottom:8px; }
+.set-cols-header { display:grid; grid-template-columns:28px 1fr 1fr 74px 80px 28px; gap:6px; margin-bottom:6px; }
+.col-lbl { font-size:11px; color:var(--text-muted); text-align:center; font-weight:600; }
+.set-num { font-size: 12px; text-align: center; font-weight: 700; color: var(--bg-main); background: var(--text-main); border-radius: 6px; padding: 4px 0; }
+
+.toggle-btn { display:flex; align-items:center; justify-content:center; gap:4px; font-size: 11px; font-weight: 600; color: var(--text-muted); background: var(--bg-main); border: 1.5px solid var(--border); border-radius: 7px; height: 34px; cursor: pointer; }
+.toggle-drop.on { background: var(--accent-light); border-color: var(--accent); color: var(--accent); }
+.toggle-fail.on { background: var(--red-light); border-color: var(--red); color: var(--red); }
+
+.icon-btn { background: var(--bg-main); border: 1.5px solid var(--border); border-radius: 7px; width: 30px; height: 30px; cursor: pointer; color: var(--text-muted); display:flex; align-items:center; justify-content:center; }
+.icon-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+.save-btn { background: var(--accent); color: #fff; border: none; border-radius: var(--radius-sm); padding: 14px; font-weight: 700; cursor: pointer; width:100%; box-shadow: 0 4px 12px var(--accent-glow); }
+.add-row-btn { background: none; border: 1.5px dashed var(--border-light); border-radius: var(--radius-sm); width:100%; padding:8px; font-size:12px; color: var(--text-muted); cursor:pointer; margin-top:8px; }
+.add-ex-btn { background: var(--bg-card); border: 1.5px dashed var(--border-light); border-radius: var(--radius); width:100%; padding:14px; font-weight:600; cursor:pointer; margin-bottom:16px; }
+
+/* LOGS */
+.log-entry { border: 1.5px solid var(--border); border-radius: var(--radius); padding: 16px; margin-bottom: 16px; background: var(--bg-card); }
+.type-badge { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 6px; background: var(--accent-light); color: var(--accent); text-transform: uppercase; }
+.set-chip { display:inline-flex; align-items:center; gap:4px; background: var(--bg-main); border: 1px solid var(--border); border-radius: 6px; padding: 4px 8px; margin: 4px 4px 4px 0; font-size: 12px; }
+.drop-chip { background:var(--accent-light); border-color:var(--accent); color:var(--accent); }
+.fail-chip { background:var(--red-light); border-color:var(--red); color:var(--red); text-decoration: line-through; }
+.pr-badge { font-size: 11px; font-weight: 700; background: rgba(34, 197, 94, 0.2); color: #4ADE80; border-radius: 5px; padding: 2px 7px; margin-left: 6px; }
+.vol-pill { font-size: 12px; font-weight: 600; color: var(--text-main); background: var(--bg-main); border-radius: 6px; padding: 4px 10px; border: 1px solid var(--border); }
+
+/* STATS */
+.stat-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:1.5rem; }
+.stat-card { background: var(--bg-card); border-radius: var(--radius); padding: 16px; border: 1.5px solid var(--border); text-align: center; }
+.stat-val { font-size:24px; font-weight:700; color: var(--accent); }
+.chart-wrap { height:240px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px; }
+</style>
+</head>
+<body>
+
+<div id="auth-container">
+  <div class="ex-card">
+    <h2 style="margin: 0 0 4px; color: var(--accent); text-align: center;">SetForce Cloud</h2>
+    <p style="margin: 0 0 20px; font-size: 12px; color: var(--text-muted); text-align: center;">Pick a username to start tracking.</p>
+    
+    <label class="field-label">Username</label>
+    <input type="text" id="auth-username" placeholder="e.g., Seth_Lifts" style="margin-bottom: 12px;">
+    
+    <label class="field-label">Password</label>
+    <input type="password" id="auth-password" placeholder="Min. 6 characters" style="margin-bottom: 20px;">
+    
+    <button class="save-btn" onclick="login()" style="margin-bottom: 12px;">Log In</button>
+    <button class="add-row-btn" onclick="register()">Create Account</button>
+    
+    <div id="auth-msg" style="color: var(--red); font-size: 13px; margin-top: 12px; text-align: center; font-weight: 500;"></div>
+  </div>
+</div>
+
+<div id="app-container" style="display:none; padding:1rem 0 0; max-width: 600px; margin: 0 auto;">
+  
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 16px;">
+    <div style="font-size: 13px; color: var(--text-muted);">Welcome, <span id="user-display" style="color: var(--text-main); font-weight: 600;"></span></div>
+    <button class="icon-btn" onclick="logout()" style="width: auto; padding: 0 10px; font-size: 11px;"><i class="ti ti-logout" style="margin-right:4px;"></i> Sign out</button>
+  </div>
+
+  <nav class="nav">
+    <button class="nav-btn active" onclick="switchTab('log')">Log</button>
+    <button class="nav-btn" onclick="switchTab('history')">History</button>
+    <button class="nav-btn" onclick="switchTab('progress')">Progress</button>
+    <button class="nav-btn" onclick="switchTab('routines')">Routines</button>
+  </nav>
+
+  <div id="tab-log" class="section active">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:1.5rem;">
+      <input type="date" id="log-date">
+      <select id="log-type" onchange="handleTypeChange()"><option>Custom</option></select>
+    </div>
+    <div id="exercises-container"></div>
+    <button class="add-ex-btn" onclick="addExercise()"><i class="ti ti-plus"></i> Add Exercise</button>
+    <textarea id="log-notes" style="height:60px; margin-bottom:12px;" placeholder="Session notes..."></textarea>
+    <button id="save-btn" class="save-btn" onclick="saveWorkout()">Save Workout</button>
+    <div class="save-msg" id="log-msg"></div>
+  </div>
+
+  <div id="tab-history" class="section">
+    <select id="hist-filter" onchange="renderHistory()" style="margin-bottom:1.5rem;"><option value="">All Workout Types</option></select>
+    <div id="history-list"></div>
+  </div>
+
+  <div id="tab-progress" class="section">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:1.5rem;">
+      <select id="prog-exercise" onchange="renderProgress()"></select>
+      <select id="prog-metric" onchange="renderProgress()">
+        <option value="max">Max weight (lbs)</option>
+        <option value="vol">Total volume (lbs)</option>
+      </select>
+    </div>
+    <div class="stat-grid" id="prog-stats"></div>
+    <div class="chart-wrap"><canvas id="prog-chart"></canvas></div>
+  </div>
+
+  <div id="tab-routines" class="section">
+    <div class="log-entry">
+      <input type="text" id="routine-name" placeholder="Routine Name" style="margin-bottom:16px;">
+      <div id="routine-exercises-container"></div>
+      <button class="add-row-btn" onclick="addRoutineExercise()">+ Add exercise to routine</button>
+      <button id="save-routine-btn" class="save-btn" onclick="saveRoutine()" style="margin-top:16px;">Save Routine</button>
+      <div class="save-msg" id="routine-msg"></div>
+    </div>
+    <div id="routines-list"></div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+  import { getFirestore, collection, doc, setDoc, deleteDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAsWi38XXFe_aSaqo9fFm38-o7DC8MJNxk",
+    authDomain: "workout-tracker-6d55b.firebaseapp.com",
+    projectId: "workout-tracker-6d55b",
+    storageBucket: "workout-tracker-6d55b.firebasestorage.app",
+    messagingSenderId: "1045536771108",
+    appId: "1:1045536771108:web:3d5d3fb1470e57cbe31cb1"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  let currentUser = null, workouts = [], templates = [], progChart = null, exCount = 0, editingWorkoutId = null, editingRoutineId = null;
+
+  // --- USERNAME AUTH LOGIC ---
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      currentUser = user;
+      document.getElementById('user-display').textContent = user.email.split('@')[0];
+      document.getElementById('auth-container').style.display = 'none';
+      document.getElementById('app-container').style.display = 'block';
+      await loadUserData();
+    } else {
+      currentUser = null;
+      document.getElementById('auth-container').style.display = 'block';
+      document.getElementById('app-container').style.display = 'none';
+    }
+  });
+
+  window.login = async function() {
+    const user = document.getElementById('auth-username').value.trim();
+    const pass = document.getElementById('auth-password').value;
+    if (!user) return alert("Enter username");
+    try { await signInWithEmailAndPassword(auth, user + "@setforce.app", pass); } 
+    catch (e) { document.getElementById('auth-msg').textContent = "Invalid username or password."; }
+  };
+
+  window.register = async function() {
+    const user = document.getElementById('auth-username').value.trim();
+    const pass = document.getElementById('auth-password').value;
+    if (!user) return alert("Pick a username");
+    if (pass.length < 6) return alert("Password must be 6+ characters");
+    try { await createUserWithEmailAndPassword(auth, user + "@setforce.app", pass); } 
+    catch (e) { document.getElementById('auth-msg').textContent = "Username taken or invalid."; }
+  };
+
+  window.logout = () => signOut(auth);
+
+  // --- CORE APP LOGIC ---
+  async function loadUserData() {
+    workouts = []; templates = [];
+    const wSnap = await getDocs(collection(db, "users", currentUser.uid, "workouts"));
+    wSnap.forEach(doc => workouts.push(doc.data()));
+    workouts.sort((a, b) => b.date.localeCompare(a.date));
+    const tSnap = await getDocs(collection(db, "users", currentUser.uid, "templates"));
+    tSnap.forEach(doc => templates.push(doc.data()));
+    initApp();
+  }
+
+  function initApp() {
+    document.getElementById('log-date').value = new Date().toISOString().split('T')[0];
+    updateTypeDropdown();
+    document.getElementById('routine-exercises-container').innerHTML = '';
+    document.getElementById('exercises-container').innerHTML = '';
+    exCount = 0;
+    addRoutineExercise();
+    addExercise();
+    renderHistory();
+  }
+
+  window.switchTab = (n) => {
+    document.querySelectorAll('.nav-btn').forEach((b,i) => b.classList.toggle('active', ['log','history','progress','routines'][i] === n));
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById('tab-' + n).classList.add('active');
+    if (n === 'history') renderHistory();
+    if (n === 'progress') renderProgress();
+    if (n === 'routines') renderRoutines();
+  };
+
+  window.moveUp = (btn) => {
+    const item = btn.closest('.ex-card') || btn.closest('.set-cols');
+    if (item?.previousElementSibling) item.parentNode.insertBefore(item, item.previousElementSibling);
+  };
+
+  window.moveDown = (btn) => {
+    const item = btn.closest('.ex-card') || btn.closest('.set-cols');
+    if (item?.nextElementSibling) item.parentNode.insertBefore(item.nextElementSibling, item);
+  };
+
+  function updateTypeDropdown() {
+    const sel = document.getElementById('log-type');
+    sel.innerHTML = '<option>Custom</option>';
+    if (templates.length) {
+      const g = document.createElement('optgroup'); g.label = "Routines";
+      templates.forEach(t => g.appendChild(new Option(t.name, t.name)));
+      sel.appendChild(g);
+    }
+  }
+
+  window.handleTypeChange = () => {
+    const t = templates.find(x => x.name === document.getElementById('log-type').value);
+    if (t) {
+      document.getElementById('exercises-container').innerHTML = ''; exCount = 0;
+      t.exercises.forEach(ex => addExercise(ex.name, ex.sets));
+    }
+  };
+
+  window.addExercise = (name='', sets=[{w:'',r:'',drop:false, fail:false}]) => {
+    exCount++; const id = exCount;
+    const div = document.createElement('div'); div.className = 'ex-card'; div.id = `ex-${id}`;
+    div.innerHTML = `
+      <div class="ex-card-header">
+        <i class="ti ti-barbell" style="color:var(--accent);"></i>
+        <input type="text" id="exname-${id}" value="${name}" placeholder="Exercise Name">
+        <button class="icon-btn" onclick="moveUp(this)"><i class="ti ti-arrow-up"></i></button>
+        <button class="icon-btn" onclick="moveDown(this)"><i class="ti ti-arrow-down"></i></button>
+        <button class="icon-btn" onclick="this.closest('.ex-card').remove()"><i class="ti ti-trash"></i></button>
+      </div>
+      <div class="set-cols-header"><span></span><span class="col-lbl">Weight</span><span class="col-lbl">Reps</span><span class="col-lbl">Drop</span><span class="col-lbl">Fail</span><span></span></div>
+      <div id="sets-${id}"></div>
+      <button class="add-row-btn" onclick="addSet(${id})">+ Add Set</button>`;
+    document.getElementById('exercises-container').appendChild(div);
+    sets.forEach(s => addSet(id, s.w, s.r, s.drop, s.fail));
+  };
+
+  window.addSet = (exId, w='', r='', drop=false, fail=false) => {
+    const cont = document.getElementById('sets-' + exId);
+    const row = document.createElement('div'); row.className = 'set-cols';
+    row.innerHTML = `
+      <span class="set-num">${cont.children.length + 1}</span>
+      <input type="number" placeholder="0" value="${w}">
+      <input type="number" placeholder="0" value="${r}">
+      <button class="toggle-btn toggle-drop${drop?' on':''}" onclick="toggleToggle(this)">${drop?'Drop':'Norm'}</button>
+      <button class="toggle-btn toggle-fail${fail?' on':''}" onclick="toggleToggle(this)">${fail?'Fail':'Pass'}</button>
+      <button class="icon-btn" onclick="this.closest('.set-cols').remove(); renumber(${exId})"><i class="ti ti-trash"></i></button>`;
+    cont.appendChild(row);
+  };
+
+  window.toggleToggle = (btn) => {
+    const on = btn.classList.toggle('on');
+    if (btn.classList.contains('toggle-drop')) btn.textContent = on ? 'Drop' : 'Norm';
+    else btn.textContent = on ? 'Fail' : 'Pass';
+  };
+
+  window.renumber = (id) => document.querySelectorAll(`#sets-${id} .set-num`).forEach((s,i) => s.textContent = i+1);
+
+  window.saveWorkout = async () => {
+    const exercises = Array.from(document.querySelectorAll('[id^="ex-"]')).map(div => {
+      const id = div.id.split('-')[1];
+      return { 
+        name: document.getElementById('exname-' + id).value,
+        sets: Array.from(div.querySelectorAll('.set-cols')).map(r => ({
+          w: parseFloat(r.querySelectorAll('input')[0].value)||0,
+          r: parseInt(r.querySelectorAll('input')[1].value)||0,
+          drop: r.querySelector('.toggle-drop').classList.contains('on'),
+          fail: r.querySelector('.toggle-fail').classList.contains('on')
+        })).filter(s => s.r > 0)
+      };
+    }).filter(e => e.sets.length > 0);
+
+    if (!exercises.length) return alert("Add some work!");
+    const workoutObj = { id: editingWorkoutId || Date.now(), date: document.getElementById('log-date').value, type: document.getElementById('log-type').value, notes: document.getElementById('log-notes').value, exercises };
+    
+    await setDoc(doc(db, "users", currentUser.uid, "workouts", workoutObj.id.toString()), workoutObj);
+    showMsg('log-msg', 'Synced to Cloud!');
+    loadUserData();
+  };
+
+  window.renderHistory = () => {
+    const list = document.getElementById('history-list');
+    list.innerHTML = workouts.map(w => `
+      <div class="log-entry">
+        <div style="display:flex; justify-content:space-between; margin-bottom:12px;">
+          <div><span class="type-badge">${w.type}</span> <span style="font-size:12px; color:var(--text-muted);">${w.date}</span></div>
+          <div>
+            <button class="icon-btn" style="display:inline-flex;" onclick="editWorkout(${w.id})"><i class="ti ti-pencil"></i></button>
+            <button class="icon-btn" style="display:inline-flex;" onclick="deleteWorkout(${w.id})"><i class="ti ti-trash"></i></button>
+          </div>
+        </div>
+        ${w.exercises.map(e => `
+          <div style="margin-bottom:8px;">
+            <div style="font-weight:600; font-size:14px;">${e.name}</div>
+            ${e.sets.map((s,i) => `<span class="set-chip ${s.drop?'drop-chip':''} ${s.fail?'fail-chip':''}">${i+1}: ${s.w}x${s.r}</span>`).join('')}
+          </div>
+        `).join('')}
+      </div>
+    `).join('');
+  };
+
+  window.editWorkout = (id) => {
+    const w = workouts.find(x => x.id === id);
+    editingWorkoutId = id;
+    document.getElementById('log-date').value = w.date;
+    document.getElementById('log-notes').value = w.notes;
+    document.getElementById('exercises-container').innerHTML = '';
+    w.exercises.forEach(e => addExercise(e.name, e.sets));
+    switchTab('log');
+  };
+
+  window.deleteWorkout = async (id) => {
+    if (confirm("Delete?")) {
+      await deleteDoc(doc(db, "users", currentUser.uid, "workouts", id.toString()));
+      loadUserData();
+    }
+  };
+
+  window.addRoutineExercise = (n='', s=3, r='') => {
+    const div = document.createElement('div'); div.className = 'set-cols'; div.style.gridTemplateColumns = "1fr 50px 50px auto";
+    div.innerHTML = `<input type="text" placeholder="Exercise" value="${n}"><input type="number" placeholder="Sets" value="${s}"><input type="number" placeholder="Reps" value="${r}"><div style="display:flex; gap:4px;"><button class="icon-btn" onclick="moveUp(this)"><i class="ti ti-arrow-up"></i></button><button class="icon-btn" onclick="moveDown(this)"><i class="ti ti-arrow-down"></i></button><button class="icon-btn" onclick="this.closest('.set-cols').remove()"><i class="ti ti-trash"></i></button></div>`;
+    document.getElementById('routine-exercises-container').appendChild(div);
+  };
+
+  window.saveRoutine = async () => {
+    const name = document.getElementById('routine-name').value;
+    const exercises = Array.from(document.getElementById('routine-exercises-container').children).map(r => {
+      const i = r.querySelectorAll('input');
+      return { name: i[0].value, sets: Array(parseInt(i[1].value)||1).fill({w:'', r:i[2].value, drop:false, fail:false}) };
+    }).filter(e => e.name);
+    await setDoc(doc(db, "users", currentUser.uid, "templates", Date.now().toString()), { id: Date.now(), name, exercises });
+    loadUserData();
+    showMsg('routine-msg', 'Routine Saved!');
+  };
+
+  window.renderRoutines = () => {
+    document.getElementById('routines-list').innerHTML = templates.map(t => `<div class="log-entry" style="display:flex; justify-content:space-between;"><div><b>${t.name}</b><br><small>${t.exercises.length} exercises</small></div><button class="icon-btn" onclick="deleteRoutine(${t.id})"><i class="ti ti-trash"></i></button></div>`).join('');
+  };
+
+  window.deleteRoutine = async (id) => {
+    await deleteDoc(doc(db, "users", currentUser.uid, "templates", id.toString()));
+    loadUserData();
+  };
+
+  window.renderProgress = () => {
+    const ex = document.getElementById('prog-exercise');
+    const names = [...new Set(workouts.flatMap(w => w.exercises.map(e => e.name)))].sort();
+    ex.innerHTML = names.map(n => `<option>${n}</option>`).join('');
+    const pts = workouts.filter(w => w.exercises.some(e => e.name === ex.value)).map(w => {
+      const e = w.exercises.find(x => x.name === ex.value);
+      return { d: w.date, v: Math.max(...e.sets.map(s => s.w)) };
+    }).sort((a,b) => a.d.localeCompare(b.d));
+    if (progChart) progChart.destroy();
+    progChart = new Chart(document.getElementById('prog-chart'), {
+      type: 'line',
+      data: { labels: pts.map(p => p.d.slice(5)), datasets: [{ data: pts.map(p => p.v), borderColor: '#F97316', tension: 0.3 }] },
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+    });
+  };
+
+  function showMsg(id, m) { const el = document.getElementById(id); el.textContent = m; setTimeout(() => el.textContent='', 2000); }
+</script>
+</body>
+</html>
