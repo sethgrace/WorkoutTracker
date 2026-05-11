@@ -20,60 +20,76 @@
   --text-main: #FAFAFA; 
   --text-muted: #A3A3A3;
   --red: #EF4444;
+  --muscle-base: #404040; 
+  --body-shadow: #050505; 
   --font-main: 'Inter', sans-serif;
   --radius: 12px;
 }
 
 * { box-sizing: border-box; }
-body { font-family: var(--font-main); background: var(--bg-main); color: var(--text-main); margin: 0; padding: 0 16px; overflow-x: hidden; }
+body { font-family: var(--font-main); background: var(--bg-main); color: var(--text-main); margin: 0; padding: 0 16px; overflow-x: hidden; color-scheme: dark; }
 
-/* NAV STYLES */
+/* NAV */
 .nav { display:flex; gap:3px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 4px; margin-top: 1rem; margin-bottom: 1.5rem; position: sticky; top: 10px; z-index: 100; }
 .nav-btn { flex:1; background:none; border:none; padding: 10px; font-size: 11px; font-weight: 800; color: var(--text-muted); cursor: pointer; border-radius: 10px; transition: 0.2s; text-transform: uppercase; letter-spacing: 0.5px; }
 .nav-btn.active { background: var(--accent); color: #fff; box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3); }
 
 .section { display:none; } 
-.section.active { display:block; animation: fadeIn 0.3s ease; }
+.section.active { display:block; animation: fadeIn 0.2s ease; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
-/* UI CARDS */
+/* CARDS & INPUTS */
 .ex-card { background: var(--bg-card); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 16px; margin-bottom: 16px; }
-input, select, textarea { font-family: var(--font-main); background: var(--bg-main); color: #fff; border: 1.5px solid var(--border); border-radius: 8px; padding: 8px; outline: none; width: 100%; font-size: 14px; }
-input:focus { border-color: var(--accent); }
+input, select, textarea { font-family: var(--font-main); background-color: var(--bg-main); color: var(--text-main); border: 1.5px solid var(--border); border-radius: 8px; padding: 10px; outline: none; width: 100%; font-size: 14px; }
+select option { background-color: #171717; color: #FAFAFA; }
+input:focus, select:focus { border-color: var(--accent); }
 
-/* INPUT CONTROLS */
+/* SETS GRID */
 .set-cols { display:grid; grid-template-columns: 24px 1.2fr 1fr 65px 28px; gap:8px; align-items:center; margin-bottom:10px; }
-.col-lbl { font-size:9px; color:var(--text-muted); text-align:center; text-transform: uppercase; font-weight: 800; letter-spacing: 0.5px; }
+.col-lbl { font-size:9px; color:var(--text-muted); text-align:center; text-transform: uppercase; font-weight: 800; }
 .adj-wrap { display: flex; align-items: center; gap: 2px; background: var(--bg-main); border-radius: 8px; border: 1px solid var(--border); padding: 2px; }
 .adj-btn { background: none; border: none; color: var(--text-muted); padding: 4px 8px; cursor: pointer; font-weight: bold; font-size: 16px; flex: 1; }
 .adj-val { width: 100% !important; border: none !important; text-align: center; padding: 0 !important; font-weight: 700; }
 
-/* HEATMAP */
-.heatmap-container { display: flex; justify-content: center; align-items: center; padding: 20px; background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border); margin-bottom: 20px; }
-.muscle { fill: #262626; transition: fill 1s ease; }
+/* CHIPS */
+.muscle-grid { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 15px; }
+.muscle-chip { font-size: 9px; font-weight: 800; padding: 4px 8px; border-radius: 6px; background: var(--bg-main); border: 1px solid var(--border); color: var(--text-muted); cursor: pointer; text-transform: uppercase; transition: 0.1s; }
+.muscle-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
 
-.save-btn { width:100%; padding:16px; background:var(--accent); border:none; color:#fff; font-weight:800; border-radius:12px; cursor:pointer; font-size: 13px; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.4); }
-.secondary-btn { width:100%; padding:12px; background:var(--bg-card); border:1.5px dashed var(--border); color:var(--text-muted); border-radius:12px; cursor:pointer; margin-bottom:1rem; font-size: 11px; font-weight: 800; letter-spacing: 0.5px; }
-.tag { font-size: 10px; padding: 2px 6px; border-radius: 4px; background: var(--bg-main); color: var(--text-muted); font-weight: 800; border: 1px solid var(--border); text-transform: uppercase; }
+/* ANATOMICAL HEATMAP */
+.heatmap-container { display: flex; justify-content: space-around; align-items: center; padding: 25px 5px; background: #0c0c0c; border-radius: 16px; border: 1px solid var(--border); margin-bottom: 20px; box-shadow: inset 0 0 40px rgba(0,0,0,0.9); }
+.silhouette { fill: var(--body-shadow); }
+.muscle-svg { 
+    fill: var(--muscle-base); 
+    stroke: var(--body-shadow); 
+    stroke-width: 1.5; 
+    stroke-linejoin: round;
+    transition: fill 0.6s ease, filter 0.6s ease; 
+}
+.view-label { font-size: 10px; font-weight: 900; color: var(--text-muted); text-align: center; margin-top: 15px; letter-spacing: 2px; }
+
+.save-btn { width:100%; padding:16px; background:var(--accent); border:none; color:#fff; font-weight:800; border-radius:12px; cursor:pointer; font-size: 13px; letter-spacing: 1px; }
+.secondary-btn { width:100%; padding:12px; background:var(--bg-card); border:1.5px dashed var(--border); color:var(--text-muted); border-radius:12px; cursor:pointer; margin-bottom:1rem; font-size: 11px; font-weight: 800; }
 </style>
 </head>
 <body>
 
+<datalist id="exercise-library"></datalist>
+
 <div id="auth-container">
-  <div class="ex-card">
-    <h1 style="text-align:center; color:var(--accent); margin:0 0 5px; font-weight:800;">SetForce Pro</h1>
-    <p style="text-align:center; font-size:11px; color:var(--text-muted); margin-bottom:20px; font-weight:700;">CLOUD HEATMAP TRACKER</p>
+  <div class="ex-card" style="max-width:400px; margin: 20vh auto;">
+    <h1 style="text-align:center; color:var(--accent); margin:0 0 5px; font-weight:900;">SetForce Pro</h1>
+    <p style="text-align:center; font-size:10px; color:var(--text-muted); letter-spacing:1px; margin-bottom:20px; font-weight:700; text-transform:uppercase;">Anatomical Log</p>
     <input type="text" id="auth-username" placeholder="Username" style="margin-bottom:12px;">
-    <input type="password" id="auth-password" placeholder="Password (6+ chars)" style="margin-bottom:20px;">
-    <button onclick="login()" class="save-btn" style="margin-bottom:12px;">LOG IN</button>
-    <button onclick="register()" style="width:100%; background:none; border:none; color:var(--text-muted); font-size:12px; cursor:pointer; font-weight:600;">CREATE ACCOUNT</button>
-    <div id="auth-msg" style="color:var(--red); text-align:center; margin-top:15px; font-size:12px; font-weight:800;"></div>
+    <input type="password" id="auth-password" placeholder="Password" style="margin-bottom:20px;">
+    <button onclick="login()" class="save-btn">LOG IN</button>
+    <button onclick="register()" style="width:100%; background:none; border:none; color:var(--text-muted); font-size:12px; cursor:pointer; font-weight:600; margin-top:10px;">CREATE ACCOUNT</button>
   </div>
 </div>
 
 <div id="app-container" style="display:none; max-width: 500px; margin: 0 auto; padding-top: 1rem;">
   <div style="display:flex; justify-content:space-between; align-items:center;">
-    <div style="font-weight:800; font-size:18px; color:var(--accent); letter-spacing:-0.5px;" id="user-display"></div>
+    <div style="font-weight:800; font-size:18px; color:var(--accent);" id="user-display"></div>
     <button onclick="logout()" style="background:var(--bg-card); border:1px solid var(--border); color:var(--text-muted); width:35px; height:35px; border-radius:10px; cursor:pointer;"><i class="ti ti-logout"></i></button>
   </div>
 
@@ -92,46 +108,64 @@ input:focus { border-color: var(--accent); }
     <div id="exercises-container"></div>
     <button class="secondary-btn" onclick="addExercise()">+ ADD EXERCISE</button>
     <button id="save-btn" class="save-btn" onclick="saveWorkout()">SAVE SESSION</button>
-    <div id="log-msg" style="text-align:center; margin-top:15px; font-weight:800; font-size:12px; letter-spacing:1px;"></div>
   </div>
 
   <div id="tab-routines" class="section">
     <div class="ex-card">
-      <div id="routine-builder-title" style="font-size:11px; font-weight:800; color:var(--text-muted); margin-bottom:12px; letter-spacing:1px;">BUILD NEW ROUTINE</div>
-      <input type="text" id="routine-name" placeholder="Routine Name (e.g., Push Day)" style="margin-bottom:12px; font-weight:700;">
-      <div id="routine-header-labels" style="display:grid; grid-template-columns: 2fr 1fr 50px 30px; gap:8px; margin-bottom:4px; opacity:0.5;">
-        <span class="col-lbl" style="text-align:left;">Exercise</span>
-        <span class="col-lbl">Muscle</span>
-        <span class="col-lbl">Sets</span>
-        <span></span>
-      </div>
+      <div id="routine-builder-title" style="font-size:11px; font-weight:800; color:var(--text-muted); margin-bottom:12px;">BUILD NEW ROUTINE</div>
+      <input type="text" id="routine-name" placeholder="Routine Name" style="margin-bottom:12px; font-weight:700;">
       <div id="routine-list-builder"></div>
       <button class="secondary-btn" onclick="addRoutineRow()">+ ADD EXERCISE</button>
       <div style="display:flex; gap:8px;">
           <button id="routine-cancel-btn" onclick="cancelRoutineEdit()" style="display:none; flex:1; background:var(--bg-main); border:1px solid var(--border); color:var(--text-muted); border-radius:12px; font-weight:700; cursor:pointer;">CANCEL</button>
-          <button id="routine-save-btn" onclick="saveRoutine()" class="save-btn" style="flex:2;">SAVE ROUTINE</button>
+          <button onclick="saveRoutine()" class="save-btn" style="flex:2;">SAVE ROUTINE</button>
       </div>
     </div>
     <div id="routines-list"></div>
   </div>
 
-  <div id="tab-history" class="section">
-    <div id="history-list"></div>
-  </div>
+  <div id="tab-history" class="section"><div id="history-list"></div></div>
 
   <div id="tab-progress" class="section">
     <div class="heatmap-container">
-        <svg viewBox="0 0 200 240" width="180" height="220" xmlns="http://www.w3.org/2000/svg">
-            <path id="heat-Chest" class="muscle" d="M80 55 Q100 50 120 55 L120 75 Q100 80 80 75 Z" />
-            <circle id="heat-Shoulders-L" class="muscle" cx="70" cy="55" r="8" />
-            <circle id="heat-Shoulders-R" class="muscle" cx="130" cy="55" r="8" />
-            <rect id="heat-Arms-L" class="muscle" x="60" y="65" width="10" height="30" rx="4" />
-            <rect id="heat-Arms-R" class="muscle" x="130" y="65" width="10" height="30" rx="4" />
-            <rect id="heat-Core" class="muscle" x="85" y="80" width="30" height="40" rx="4" />
-            <path id="heat-Legs-L" class="muscle" d="M80 125 L75 210 Q85 215 95 210 L100 125 Z" />
-            <path id="heat-Legs-R" class="muscle" d="M120 125 L125 210 Q115 215 105 210 L100 125 Z" />
-            <path id="heat-Back" class="muscle" d="M85 35 Q100 30 115 35 L125 50 L75 50 Z" />
-        </svg>
+        <div style="text-align:center;">
+            <svg viewBox="0 0 100 170" width="130" height="230">
+                <path class="silhouette" d="M 43 10 C 43 2, 57 2, 57 10 C 57 18, 53 22, 53 25 L 47 25 C 47 22, 43 18, 43 10 Z M 47 25 L 53 25 L 56 28 L 72 32 C 78 33, 85 45, 88 75 C 88 85, 85 105, 82 105 L 75 105 L 68 70 L 65 70 L 65 145 C 65 160, 72 165, 72 165 L 56 165 L 50 120 L 44 165 L 28 165 C 28 165, 35 160, 35 145 L 35 70 L 32 70 L 25 105 L 18 105 C 15 105, 12 85, 12 75 C 15 45, 22 33, 28 32 L 44 28 Z" />
+                
+                <path id="heat-Shoulders-L" class="muscle-svg" d="M 27 35 L 38 32 L 35 48 L 22 48 Z" />
+                <path id="heat-Shoulders-R" class="muscle-svg" d="M 73 35 L 62 32 L 65 48 L 78 48 Z" />
+                <path id="heat-UpperChest" class="muscle-svg" d="M 40 33 L 60 33 L 63 45 L 50 50 L 37 45 Z" />
+                <path id="heat-LowerChest" class="muscle-svg" d="M 36 46 L 50 51 L 64 46 L 62 58 L 50 62 L 38 58 Z" />
+                <path id="heat-Abs" class="muscle-svg" d="M 42 62 L 58 62 L 56 75 L 44 75 Z M 43 76 L 57 76 L 55 88 L 45 88 Z M 44 89 L 56 89 L 54 100 L 46 100 Z" />
+                <path id="heat-Obliques-L" class="muscle-svg" d="M 37 60 L 41 62 L 43 100 L 33 95 Z" />
+                <path id="heat-Obliques-R" class="muscle-svg" d="M 63 60 L 59 62 L 57 100 L 67 95 Z" />
+                <path id="heat-Biceps-L" class="muscle-svg" d="M 21 50 L 33 50 L 30 73 L 18 73 Z" />
+                <path id="heat-Biceps-R" class="muscle-svg" d="M 79 50 L 67 50 L 70 73 L 82 73 Z" />
+                <path id="heat-Forearms-L" class="muscle-svg" d="M 17 76 L 29 76 L 24 102 L 14 102 Z" />
+                <path id="heat-Forearms-R" class="muscle-svg" d="M 83 76 L 71 76 L 76 102 L 86 102 Z" />
+                <path id="heat-Quads-L" class="muscle-svg" d="M 34 102 L 48 102 L 45 145 L 30 140 Z" />
+                <path id="heat-Quads-R" class="muscle-svg" d="M 66 102 L 52 102 L 55 145 L 70 140 Z" />
+            </svg>
+            <div class="view-label">FRONT</div>
+        </div>
+        
+        <div style="text-align:center;">
+            <svg viewBox="0 0 100 170" width="130" height="230">
+                <path class="silhouette" d="M 43 10 C 43 2, 57 2, 57 10 C 57 18, 53 22, 53 25 L 47 25 C 47 22, 43 18, 43 10 Z M 47 25 L 53 25 L 56 28 L 72 32 C 78 33, 85 45, 88 75 C 88 85, 85 105, 82 105 L 75 105 L 68 70 L 65 70 L 65 145 C 65 160, 72 165, 72 165 L 56 165 L 50 120 L 44 165 L 28 165 C 28 165, 35 160, 35 145 L 35 70 L 32 70 L 25 105 L 18 105 C 15 105, 12 85, 12 75 C 15 45, 22 33, 28 32 L 44 28 Z" />
+                
+                <path id="heat-UpperBack" class="muscle-svg" d="M 50 28 L 65 38 L 50 58 L 35 38 Z" />
+                <path id="heat-Lats" class="muscle-svg" d="M 33 42 L 49 60 L 67 42 L 72 68 L 50 95 L 28 68 Z" />
+                <path id="heat-Triceps-L" class="muscle-svg" d="M 21 50 L 33 50 L 30 73 L 18 73 Z" />
+                <path id="heat-Triceps-R" class="muscle-svg" d="M 79 50 L 67 50 L 70 73 L 82 73 Z" />
+                <path id="heat-Glutes-L" class="muscle-svg" d="M 33 97 L 49 97 L 47 118 L 29 113 Z" />
+                <path id="heat-Glutes-R" class="muscle-svg" d="M 67 97 L 51 97 L 53 118 L 71 113 Z" />
+                <path id="heat-Hamstrings-L" class="muscle-svg" d="M 30 120 L 46 120 L 43 145 L 29 145 Z" />
+                <path id="heat-Hamstrings-R" class="muscle-svg" d="M 70 120 L 54 120 L 57 145 L 71 145 Z" />
+                <path id="heat-Calves-L" class="muscle-svg" d="M 30 148 L 42 148 L 38 165 L 28 162 Z" />
+                <path id="heat-Calves-R" class="muscle-svg" d="M 70 148 L 58 148 L 62 165 L 72 162 Z" />
+            </svg>
+            <div class="view-label">BACK</div>
+        </div>
     </div>
     <div id="volume-breakdown" class="ex-card"></div>
   </div>
@@ -156,30 +190,88 @@ input:focus { border-color: var(--accent); }
   const db = getFirestore(app);
 
   let currentUser = null, workouts = [], templates = [], exCount = 0, editingRoutineId = null;
-  const muscleGroups = ["Chest", "Back", "Legs", "Shoulders", "Arms", "Core"];
+  const muscleGroups = ["UpperChest", "LowerChest", "Lats", "UpperBack", "Quads", "Hamstrings", "Glutes", "Shoulders", "Biceps", "Triceps", "Forearms", "Abs", "Obliques", "Calves"];
+
+  // MASSIVELY EXPANDED EXERCISE LIBRARY
+  const library = [
+    // Chest
+    { name: "Bench Press (Barbell)", groups: ["UpperChest", "LowerChest", "Triceps", "Shoulders"] },
+    { name: "Bench Press (Dumbbell)", groups: ["UpperChest", "LowerChest", "Triceps"] },
+    { name: "Incline Bench Press", groups: ["UpperChest", "Shoulders", "Triceps"] },
+    { name: "Decline Bench Press", groups: ["LowerChest", "Triceps"] },
+    { name: "Chest Fly (Cable/Machine)", groups: ["UpperChest", "LowerChest"] },
+    { name: "Pushups", groups: ["UpperChest", "LowerChest", "Triceps", "Abs"] },
+    { name: "Dips (Chest Focus)", groups: ["LowerChest", "Triceps", "Shoulders"] },
+    // Back
+    { name: "Deadlift", groups: ["Lats", "UpperBack", "Hamstrings", "Glutes", "Forearms"] },
+    { name: "Pullups", groups: ["Lats", "Biceps", "Forearms"] },
+    { name: "Lat Pulldown", groups: ["Lats", "Biceps"] },
+    { name: "Seated Cable Row", groups: ["Lats", "UpperBack", "Biceps"] },
+    { name: "Barbell Row", groups: ["Lats", "UpperBack", "Biceps"] },
+    { name: "Dumbbell Row", groups: ["Lats", "UpperBack", "Biceps"] },
+    { name: "T-Bar Row", groups: ["Lats", "UpperBack", "Biceps"] },
+    { name: "Face Pulls", groups: ["UpperBack", "Shoulders"] },
+    // Shoulders
+    { name: "Overhead Press (Barbell)", groups: ["Shoulders", "Triceps"] },
+    { name: "Overhead Press (Dumbbell)", groups: ["Shoulders", "Triceps"] },
+    { name: "Lateral Raise", groups: ["Shoulders"] },
+    { name: "Front Raise", groups: ["Shoulders"] },
+    { name: "Reverse Pec Deck", groups: ["Shoulders", "UpperBack"] },
+    { name: "Arnold Press", groups: ["Shoulders", "Triceps"] },
+    // Legs
+    { name: "Back Squat", groups: ["Quads", "Glutes"] },
+    { name: "Front Squat", groups: ["Quads", "Abs"] },
+    { name: "Leg Press", groups: ["Quads", "Glutes"] },
+    { name: "Hack Squat", groups: ["Quads"] },
+    { name: "Bulgarian Split Squat", groups: ["Quads", "Glutes"] },
+    { name: "Lunges", groups: ["Quads", "Glutes"] },
+    { name: "Romanian Deadlift (RDL)", groups: ["Hamstrings", "Glutes", "LowerBack"] },
+    { name: "Leg Curl (Seated/Lying)", groups: ["Hamstrings"] },
+    { name: "Leg Extension", groups: ["Quads"] },
+    { name: "Calf Raise (Standing)", groups: ["Calves"] },
+    { name: "Calf Raise (Seated)", groups: ["Calves"] },
+    // Arms
+    { name: "Bicep Curl (Barbell)", groups: ["Biceps"] },
+    { name: "Bicep Curl (Dumbbell)", groups: ["Biceps"] },
+    { name: "Hammer Curl", groups: ["Biceps", "Forearms"] },
+    { name: "Preacher Curl", groups: ["Biceps"] },
+    { name: "Tricep Pushdown", groups: ["Triceps"] },
+    { name: "Skullcrushers", groups: ["Triceps"] },
+    { name: "Overhead Tricep Extension", groups: ["Triceps"] },
+    { name: "Dips (Tricep Focus)", groups: ["Triceps", "LowerChest"] },
+    // Core
+    { name: "Plank", groups: ["Abs", "Obliques"] },
+    { name: "Hanging Leg Raise", groups: ["Abs"] },
+    { name: "Crunches", groups: ["Abs"] },
+    { name: "Russian Twist", groups: ["Obliques", "Abs"] },
+    { name: "Ab Wheel Rollout", groups: ["Abs", "Lats"] },
+    { name: "Cable Crunch", groups: ["Abs"] }
+  ];
+
+  const dl = document.getElementById('exercise-library');
+  library.forEach(ex => dl.appendChild(new Option(ex.name, ex.name)));
 
   onAuthStateChanged(auth, async (user) => {
     if (user) {
       currentUser = user;
       document.getElementById('user-display').textContent = user.email.split('@')[0].toUpperCase();
-      document.getElementById('auth-container').style.display = 'none';
       document.getElementById('app-container').style.display = 'block';
+      document.getElementById('auth-container').style.display = 'none';
       await loadData();
     } else {
-      document.getElementById('auth-container').style.display = 'block';
       document.getElementById('app-container').style.display = 'none';
+      document.getElementById('auth-container').style.display = 'block';
     }
   });
 
-  window.login = () => signInWithEmailAndPassword(auth, document.getElementById('auth-username').value.trim() + "@setforce.app", document.getElementById('auth-password').value).catch(e => document.getElementById('auth-msg').textContent = "LOG-IN FAILED");
-  window.register = () => createUserWithEmailAndPassword(auth, document.getElementById('auth-username').value.trim() + "@setforce.app", document.getElementById('auth-password').value).catch(e => document.getElementById('auth-msg').textContent = "6+ CHARACTERS REQUIRED");
+  window.login = () => signInWithEmailAndPassword(auth, document.getElementById('auth-username').value.trim() + "@setforce.app", document.getElementById('auth-password').value).catch(e => document.getElementById('auth-msg').textContent = "Login Failed");
+  window.register = () => createUserWithEmailAndPassword(auth, document.getElementById('auth-username').value.trim() + "@setforce.app", document.getElementById('auth-password').value).catch(e => document.getElementById('auth-msg').textContent = "6+ chars needed");
   window.logout = () => signOut(auth);
 
   async function loadData() {
     const qW = query(collection(db, "users", currentUser.uid, "workouts"), orderBy("date", "desc"));
     const snapW = await getDocs(qW); workouts = snapW.docs.map(d => d.data());
     const snapT = await getDocs(collection(db, "users", currentUser.uid, "templates")); templates = snapT.docs.map(d => ({...d.data(), id: d.id}));
-    
     updateTypeDropdown(); renderHistory(); renderRoutines(); renderHeatmap();
     document.getElementById('log-date').value = new Date().toISOString().split('T')[0];
   }
@@ -190,21 +282,33 @@ input:focus { border-color: var(--accent); }
     if(t === 'progress') renderHeatmap();
   };
 
-  // --- LOGGING ---
-  window.addExercise = (name='', group='Chest', sets=[{w:0, r:10, rpe:8}, {w:0, r:10, rpe:8}, {w:0, r:10, rpe:8}]) => {
+  window.handleExInput = (id, containerId) => {
+    const name = document.getElementById(`exname-${id}`).value;
+    const match = library.find(ex => ex.name === name);
+    if(match) {
+        document.getElementById(containerId).querySelectorAll('.muscle-chip').forEach(chip => {
+            chip.classList.toggle('active', match.groups.includes(chip.dataset.group));
+        });
+    }
+  };
+
+  function createMuscleGrid(id, activeGroups = []) {
+    return `<div class="muscle-grid" id="mgrid-${id}">` + 
+      muscleGroups.map(g => `<div class="muscle-chip ${activeGroups.includes(g)?'active':''}" data-group="${g}" onclick="this.classList.toggle('active')">${g}</div>`).join('') + 
+      `</div>`;
+  }
+
+  window.addExercise = (name='', groups=[], sets=[{w:0, r:10, rpe:8}, {w:0, r:10, rpe:8}, {w:0, r:10, rpe:8}]) => {
     exCount++; const id = exCount;
     const div = document.createElement('div'); div.className = 'ex-card'; div.id = `ex-${id}`;
     div.innerHTML = `
-      <div style="display:flex; gap:8px; margin-bottom:12px;">
-        <input type="text" id="exname-${id}" value="${name}" placeholder="Exercise Name" style="flex:2; font-weight:800;">
-        <select id="exgroup-${id}" style="flex:1; font-size:11px; font-weight:800; text-transform:uppercase;">
-          ${muscleGroups.map(g => `<option ${g===group?'selected':''}>${g}</option>`).join('')}
-        </select>
+      <div style="display:flex; gap:8px; margin-bottom:10px;">
+        <input type="text" id="exname-${id}" list="exercise-library" value="${name}" oninput="handleExInput(${id}, 'mgrid-${id}')" placeholder="Search or Type Exercise..." style="font-weight:800;">
         <button onclick="this.closest('.ex-card').remove()" style="background:none; border:none; color:var(--text-muted); cursor:pointer;"><i class="ti ti-trash"></i></button>
       </div>
-      <div class="set-cols" style="opacity:0.5; margin-bottom:5px;"><span class="col-lbl"></span><span class="col-lbl">Weight</span><span class="col-lbl">Reps</span><span class="col-lbl">RPE</span><span></span></div>
+      ${createMuscleGrid(id, groups)}
       <div id="sets-${id}"></div>
-      <button onclick="addSet(${id})" style="width:100%; background:none; border:1px dashed var(--border); color:var(--text-muted); padding:8px; border-radius:8px; margin-top:8px; font-size:10px; font-weight:800; cursor:pointer; letter-spacing:1px;">+ ADD SET</button>
+      <button onclick="addSet(${id})" style="width:100%; background:none; border:1px dashed var(--border); color:var(--text-muted); padding:8px; border-radius:8px; margin-top:8px; font-size:10px; font-weight:800; cursor:pointer;">+ ADD SET</button>
     `;
     document.getElementById('exercises-container').appendChild(div);
     sets.forEach(s => addSet(id, s.w, s.r, s.rpe));
@@ -226,13 +330,13 @@ input:focus { border-color: var(--accent); }
   window.adj = (btn, amt) => { const inp = btn.parentNode.querySelector('input'); inp.value = Math.max(0, parseFloat(inp.value||0) + amt); };
 
   window.saveWorkout = async () => {
-    const btn = document.getElementById('save-btn'); const msg = document.getElementById('log-msg');
+    const btn = document.getElementById('save-btn');
     btn.textContent = "SYNCING...";
     const exercises = Array.from(document.querySelectorAll('[id^="ex-"]')).map(div => {
         const id = div.id.split('-')[1];
         return {
             name: document.getElementById(`exname-${id}`).value,
-            group: document.getElementById(`exgroup-${id}`).value,
+            groups: Array.from(div.querySelectorAll('.muscle-chip.active')).map(c => c.dataset.group),
             sets: Array.from(div.querySelectorAll('.set-cols')).map(row => ({
                 w: parseFloat(row.querySelectorAll('input')[0].value)||0,
                 r: parseInt(row.querySelectorAll('input')[1].value)||0,
@@ -240,123 +344,91 @@ input:focus { border-color: var(--accent); }
             })).filter(s => s.r > 0)
         };
     }).filter(e => e.sets.length > 0);
-
     await setDoc(doc(db, "users", currentUser.uid, "workouts", Date.now().toString()), { id: Date.now().toString(), date: document.getElementById('log-date').value, exercises });
-    btn.textContent = "SAVE SESSION"; msg.textContent = "SESSION SYNCED";
-    setTimeout(() => msg.textContent = "", 3000); loadData();
+    btn.textContent = "SAVE SESSION"; loadData();
   };
 
-  // --- ROUTINES ---
-  window.addRoutineRow = (name='', group='Chest', sets=3) => {
-    const div = document.createElement('div'); div.className = 'adj-wrap'; div.style.display = "grid"; div.style.gridTemplateColumns = "2fr 1fr 50px 30px"; div.style.marginBottom = "8px"; div.style.padding = "6px";
+  window.addRoutineRow = (name='', groups=[], sets=3) => {
+    const id = Math.random().toString(36).substr(2, 9);
+    const div = document.createElement('div'); div.className = 'ex-card'; div.style.padding = "10px";
     div.innerHTML = `
-        <input type="text" placeholder="Exercise" value="${name}" style="border:none; background:transparent; font-weight:700;">
-        <select style="border:none; background:transparent; font-size:10px; font-weight:800; text-transform:uppercase;">${muscleGroups.map(g => `<option ${g===group?'selected':''}>${g}</option>`).join('')}</select>
-        <input type="number" value="${sets}" style="border:none; background:transparent; text-align:center; font-weight:800;">
-        <button onclick="this.closest('.adj-wrap').remove()" style="background:none; border:none; color:var(--red); cursor:pointer;"><i class="ti ti-trash"></i></button>
+        <div style="display:flex; gap:8px; margin-bottom:10px;">
+            <input type="text" id="exname-${id}" list="exercise-library" value="${name}" oninput="handleExInput('${id}', 'mgrid-${id}')" placeholder="Exercise" style="font-weight:700;">
+            <input type="number" value="${sets}" style="width:50px; text-align:center; font-weight:800;">
+            <button onclick="this.closest('.ex-card').remove()" style="background:none; border:none; color:var(--red);"><i class="ti ti-trash"></i></button>
+        </div>
+        ${createMuscleGrid(id, groups)}
     `;
     document.getElementById('routine-list-builder').appendChild(div);
   };
 
   window.saveRoutine = async () => {
     const name = document.getElementById('routine-name').value;
-    const exercises = Array.from(document.getElementById('routine-list-builder').children).map(row => {
-        const inputs = row.querySelectorAll('input');
-        return { name: inputs[0].value, group: row.querySelector('select').value, sets: parseInt(inputs[1].value) || 3 };
+    const exercises = Array.from(document.getElementById('routine-list-builder').children).map(card => {
+        const inputs = card.querySelectorAll('input');
+        return { 
+            name: inputs[0].value, 
+            sets: parseInt(inputs[1].value) || 3,
+            groups: Array.from(card.querySelectorAll('.muscle-chip.active')).map(c => c.dataset.group)
+        };
     }).filter(e => e.name);
-    
-    if(!name || !exercises.length) return alert("Fill in name and exercises");
-    
-    const id = editingRoutineId || Date.now().toString();
-    await setDoc(doc(db, "users", currentUser.uid, "templates", id), { name, exercises });
-    cancelRoutineEdit();
-    loadData();
+    await setDoc(doc(db, "users", currentUser.uid, "templates", editingRoutineId || Date.now().toString()), { name, exercises });
+    cancelRoutineEdit(); loadData();
   };
 
   window.editRoutine = (id) => {
-    const routine = templates.find(t => t.id === id);
-    if(!routine) return;
-    editingRoutineId = id;
-    document.getElementById('routine-builder-title').textContent = "EDITING ROUTINE";
-    document.getElementById('routine-name').value = routine.name;
-    document.getElementById('routine-list-builder').innerHTML = "";
+    const r = templates.find(t => t.id === id); if(!r) return;
+    editingRoutineId = id; document.getElementById('routine-builder-title').textContent = "EDITING ROUTINE";
+    document.getElementById('routine-name').value = r.name; document.getElementById('routine-list-builder').innerHTML = "";
     document.getElementById('routine-cancel-btn').style.display = "block";
-    routine.exercises.forEach(ex => addRoutineRow(ex.name, ex.group, ex.sets));
-    window.scrollTo({top: 0, behavior: 'smooth'});
+    r.exercises.forEach(ex => addRoutineRow(ex.name, ex.groups, ex.sets));
+    switchTab('routines');
   };
 
-  window.cancelRoutineEdit = () => {
-    editingRoutineId = null;
-    document.getElementById('routine-builder-title').textContent = "BUILD NEW ROUTINE";
-    document.getElementById('routine-name').value = "";
-    document.getElementById('routine-list-builder').innerHTML = "";
-    document.getElementById('routine-cancel-btn').style.display = "none";
-  };
+  window.cancelRoutineEdit = () => { editingRoutineId = null; document.getElementById('routine-builder-title').textContent = "BUILD NEW ROUTINE"; document.getElementById('routine-name').value = ""; document.getElementById('routine-list-builder').innerHTML = ""; document.getElementById('routine-cancel-btn').style.display = "none"; };
 
   window.applyRoutine = () => {
     const r = templates.find(t => t.name === document.getElementById('log-type').value);
     if(!r) return; document.getElementById('exercises-container').innerHTML = ""; 
-    r.exercises.forEach(ex => {
-        // Create an array of empty sets based on the routine's "sets" count
-        const setList = Array.from({length: ex.sets}, () => ({w:0, r:10, rpe:8}));
-        addExercise(ex.name, ex.group, setList);
-    });
+    r.exercises.forEach(ex => addExercise(ex.name, ex.groups, Array.from({length: ex.sets}, () => ({w:0, r:10, rpe:8}))));
   };
 
   function updateTypeDropdown() { document.getElementById('log-type').innerHTML = '<option value="">Custom Session</option>' + templates.map(t => `<option value="${t.name}">${t.name}</option>`).join(''); }
 
-  function renderRoutines() {
-    document.getElementById('routines-list').innerHTML = templates.map(t => `
-        <div class="ex-card" style="display:flex; justify-content:space-between; align-items:center;">
-            <div>
-                <div style="font-weight:800; font-size:14px; letter-spacing:-0.2px;">${t.name.toUpperCase()}</div>
-                <div style="font-size:10px; color:var(--text-muted); font-weight:700;">${t.exercises.length} EXERCISES</div>
-            </div>
-            <div style="display:flex; gap:8px;">
-                <button onclick="editRoutine('${t.id}')" style="background:var(--bg-main); border:1px solid var(--border); color:var(--text-muted); width:32px; height:32px; border-radius:8px; cursor:pointer;"><i class="ti ti-pencil"></i></button>
-                <button onclick="deleteRoutine('${t.id}')" style="background:var(--bg-main); border:1px solid var(--border); color:var(--red); width:32px; height:32px; border-radius:8px; cursor:pointer; opacity:0.6;"><i class="ti ti-trash"></i></button>
-            </div>
-        </div>
-    `).join('');
-  }
-
-  // --- HEATMAP & HISTORY ---
   function renderHeatmap() {
-    const volumes = {}; muscleGroups.forEach(g => volumes[g] = 0);
+    const v = {}; muscleGroups.forEach(g => v[g] = 0);
     const cutoff = new Date(); cutoff.setDate(cutoff.getDate() - 14);
     workouts.filter(w => new Date(w.date) >= cutoff).forEach(w => {
-        w.exercises.forEach(e => { if(volumes[e.group] !== undefined) volumes[e.group] += e.sets.length; });
-    });
-    const maxSets = Math.max(...Object.values(volumes), 1);
-    Object.entries(volumes).forEach(([group, count]) => {
-        const intensity = count / maxSets;
-        const color = count === 0 ? "#262626" : `rgba(249, 115, 22, ${0.2 + (intensity * 0.8)})`;
-        document.querySelectorAll(`[id^="heat-${group}"]`).forEach(el => {
-            el.style.fill = color;
-            if(count > 0) el.style.filter = `drop-shadow(0 0 ${intensity * 6}px var(--accent))`;
+        w.exercises.forEach(e => {
+            e.groups.forEach(g => { if(v[g] !== undefined) v[g] += e.sets.length; });
         });
     });
-    document.getElementById('volume-breakdown').innerHTML = `<div style="font-size:10px; font-weight:800; color:var(--text-muted); margin-bottom:12px; letter-spacing:1px;">14-DAY SET DISTRIBUTION</div>` +
-        Object.entries(volumes).sort((a,b) => b[1]-a[1]).map(([g, v]) => `
-            <div style="display:flex; justify-content:space-between; font-size:11px; margin-bottom:4px; font-weight:800;"><span>${g.toUpperCase()}</span><span>${v} SETS</span></div>
-            <div style="height:4px; background:var(--bg-main); border-radius:2px; margin-bottom:10px;"><div style="width:${(v/maxSets)*100}%; background:var(--accent); height:100%; border-radius:2px;"></div></div>
-        `).join('');
+    const max = Math.max(...Object.values(v), 1);
+    Object.entries(v).forEach(([g, c]) => {
+        const i = c / max; 
+        const col = c === 0 ? "var(--muscle-base)" : `rgba(249, 115, 22, ${0.4 + (i * 0.6)})`;
+        const glow = c === 0 ? "none" : `drop-shadow(0 0 ${i * 8}px rgba(249, 115, 22, 0.5))`;
+        document.querySelectorAll(`[id^="heat-${g}"]`).forEach(el => { 
+            el.style.fill = col; 
+            el.style.filter = glow;
+        });
+    });
+    document.getElementById('volume-breakdown').innerHTML = `<div style="font-size:10px; font-weight:800; color:var(--text-muted); margin-bottom:12px; letter-spacing:1px;">14-DAY SET LOAD</div>` +
+        Object.entries(v).sort((a,b) => b[1]-a[1]).map(([g, val]) => `
+            <div style="display:flex; justify-content:space-between; font-size:11px; margin-bottom:4px; font-weight:800;"><span>${g.toUpperCase()}</span><span>${val} SETS</span></div>
+            <div style="height:3px; background:var(--bg-main); border-radius:2px; margin-bottom:8px;"><div style="width:${(val/max)*100}%; background:var(--accent); height:100%; border-radius:2px;"></div></div>`).join('');
   }
 
   function renderHistory() {
-    document.getElementById('history-list').innerHTML = workouts.map(w => `
-      <div class="ex-card" style="border-left: 4px solid var(--accent);">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-            <div style="font-weight:900; font-size:14px;">${new Date(w.date).toLocaleDateString(undefined, {month:'short', day:'numeric'}).toUpperCase()}</div>
-            <button onclick="deleteWorkout('${w.id}')" style="background:none; border:none; color:var(--text-muted); cursor:pointer;"><i class="ti ti-trash"></i></button>
-        </div>
-        ${w.exercises.map(e => `<div style="margin-bottom:8px;"><div style="font-size:12px; font-weight:800;">${e.name.toUpperCase()} <span class="tag">${e.group}</span></div><div style="display:flex; flex-wrap:wrap; gap:4px; margin-top:4px;">${e.sets.map(s => `<span style="font-size:10px; background:var(--bg-main); padding:4px 6px; border-radius:4px; border:1px solid var(--border); font-weight:800;">${s.w}x${s.r} <span style="color:var(--accent)">@${s.rpe}</span></span>`).join('')}</div></div>`).join('')}
-      </div>`).join('');
+    document.getElementById('history-list').innerHTML = workouts.map(w => `<div class="ex-card" style="border-left: 4px solid var(--accent);"><div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;"><div style="font-weight:900; font-size:14px;">${new Date(w.date).toLocaleDateString(undefined, {month:'short', day:'numeric'}).toUpperCase()}</div><button onclick="deleteWorkout('${w.id}')" style="background:none; border:none; color:var(--text-muted); cursor:pointer;"><i class="ti ti-trash"></i></button></div>${w.exercises.map(e => `<div style="margin-bottom:8px;"><div style="font-size:12px; font-weight:800;">${e.name.toUpperCase()}</div><div style="display:flex; flex-wrap:wrap; gap:4px; margin-top:4px;">${e.sets.map(s => `<span style="font-size:10px; background:var(--bg-main); padding:4px 6px; border-radius:4px; border:1px solid var(--border); font-weight:800;">${s.w}x${s.r} <span style="color:var(--accent)">@${s.rpe}</span></span>`).join('')}</div></div>`).join('')}</div>`).join('');
+  }
+
+  function renderRoutines() {
+    document.getElementById('routines-list').innerHTML = templates.map(t => `<div class="ex-card" style="display:flex; justify-content:space-between; align-items:center; padding:12px;"><div style="font-weight:900; font-size:14px;">${t.name.toUpperCase()}</div><div style="display:flex; gap:8px;"><button onclick="editRoutine('${t.id}')" style="background:var(--bg-main); border:1px solid var(--border); color:var(--text-muted); width:32px; height:32px; border-radius:8px;"><i class="ti ti-pencil"></i></button><button onclick="deleteRoutine('${t.id}')" style="background:var(--bg-main); border:1px solid var(--border); color:var(--red); width:32px; height:32px; border-radius:8px; opacity:0.6;"><i class="ti ti-trash"></i></button></div></div>`).join('');
   }
 
   window.deleteWorkout = async (id) => { if(confirm("Delete session?")) { await deleteDoc(doc(db, "users", currentUser.uid, "workouts", id)); loadData(); } };
   window.deleteRoutine = async (id) => { if(confirm("Delete routine?")) { await deleteDoc(doc(db, "users", currentUser.uid, "templates", id)); loadData(); } };
-
 </script>
 </body>
 </html>
