@@ -98,11 +98,11 @@ input:focus { border-color: var(--accent); }
   <div id="tab-routines" class="section">
     <div class="ex-card">
       <div id="routine-builder-title" style="font-size:11px; font-weight:800; color:var(--text-muted); margin-bottom:12px; letter-spacing:1px;">BUILD NEW ROUTINE</div>
-      <input type="text" id="routine-name" placeholder="Routine Name (e.g., Leg Day)" style="margin-bottom:12px; font-weight:700;">
+      <input type="text" id="routine-name" placeholder="Routine Name (e.g., Push Day)" style="margin-bottom:12px; font-weight:700;">
       <div id="routine-header-labels" style="display:grid; grid-template-columns: 2fr 1fr 50px 30px; gap:8px; margin-bottom:4px; opacity:0.5;">
         <span class="col-lbl" style="text-align:left;">Exercise</span>
         <span class="col-lbl">Muscle</span>
-        <span class="col-lbl">Reps</span>
+        <span class="col-lbl">Sets</span>
         <span></span>
       </div>
       <div id="routine-list-builder"></div>
@@ -247,12 +247,12 @@ input:focus { border-color: var(--accent); }
   };
 
   // --- ROUTINES ---
-  window.addRoutineRow = (name='', group='Chest', reps=10) => {
+  window.addRoutineRow = (name='', group='Chest', sets=3) => {
     const div = document.createElement('div'); div.className = 'adj-wrap'; div.style.display = "grid"; div.style.gridTemplateColumns = "2fr 1fr 50px 30px"; div.style.marginBottom = "8px"; div.style.padding = "6px";
     div.innerHTML = `
         <input type="text" placeholder="Exercise" value="${name}" style="border:none; background:transparent; font-weight:700;">
         <select style="border:none; background:transparent; font-size:10px; font-weight:800; text-transform:uppercase;">${muscleGroups.map(g => `<option ${g===group?'selected':''}>${g}</option>`).join('')}</select>
-        <input type="number" value="${reps}" style="border:none; background:transparent; text-align:center; font-weight:800;">
+        <input type="number" value="${sets}" style="border:none; background:transparent; text-align:center; font-weight:800;">
         <button onclick="this.closest('.adj-wrap').remove()" style="background:none; border:none; color:var(--red); cursor:pointer;"><i class="ti ti-trash"></i></button>
     `;
     document.getElementById('routine-list-builder').appendChild(div);
@@ -262,7 +262,7 @@ input:focus { border-color: var(--accent); }
     const name = document.getElementById('routine-name').value;
     const exercises = Array.from(document.getElementById('routine-list-builder').children).map(row => {
         const inputs = row.querySelectorAll('input');
-        return { name: inputs[0].value, group: row.querySelector('select').value, reps: parseInt(inputs[1].value) || 10 };
+        return { name: inputs[0].value, group: row.querySelector('select').value, sets: parseInt(inputs[1].value) || 3 };
     }).filter(e => e.name);
     
     if(!name || !exercises.length) return alert("Fill in name and exercises");
@@ -281,7 +281,7 @@ input:focus { border-color: var(--accent); }
     document.getElementById('routine-name').value = routine.name;
     document.getElementById('routine-list-builder').innerHTML = "";
     document.getElementById('routine-cancel-btn').style.display = "block";
-    routine.exercises.forEach(ex => addRoutineRow(ex.name, ex.group, ex.reps));
+    routine.exercises.forEach(ex => addRoutineRow(ex.name, ex.group, ex.sets));
     window.scrollTo({top: 0, behavior: 'smooth'});
   };
 
@@ -296,7 +296,11 @@ input:focus { border-color: var(--accent); }
   window.applyRoutine = () => {
     const r = templates.find(t => t.name === document.getElementById('log-type').value);
     if(!r) return; document.getElementById('exercises-container').innerHTML = ""; 
-    r.exercises.forEach(ex => addExercise(ex.name, ex.group, [{w:0, r:ex.reps, rpe:8}, {w:0, r:ex.reps, rpe:8}, {w:0, r:ex.reps, rpe:8}]));
+    r.exercises.forEach(ex => {
+        // Create an array of empty sets based on the routine's "sets" count
+        const setList = Array.from({length: ex.sets}, () => ({w:0, r:10, rpe:8}));
+        addExercise(ex.name, ex.group, setList);
+    });
   };
 
   function updateTypeDropdown() { document.getElementById('log-type').innerHTML = '<option value="">Custom Session</option>' + templates.map(t => `<option value="${t.name}">${t.name}</option>`).join(''); }
