@@ -7,7 +7,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
 
 <style>
@@ -27,60 +27,53 @@
 * { box-sizing: border-box; }
 body { font-family: var(--font-main); background: var(--bg-main); color: var(--text-main); margin: 0; padding: 0 16px; overflow-x: hidden; }
 
-/* AUTH & NAV */
-#auth-container { max-width: 400px; margin: 15vh auto; }
+/* NAV STYLES */
 .nav { display:flex; gap:3px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 4px; margin-top: 1rem; margin-bottom: 1.5rem; position: sticky; top: 10px; z-index: 100; }
-.nav-btn { flex:1; background:none; border:none; padding: 10px; font-size: 12px; font-weight: 700; color: var(--text-muted); cursor: pointer; border-radius: 10px; transition: 0.2s; text-transform: uppercase; }
+.nav-btn { flex:1; background:none; border:none; padding: 10px; font-size: 11px; font-weight: 800; color: var(--text-muted); cursor: pointer; border-radius: 10px; transition: 0.2s; text-transform: uppercase; letter-spacing: 0.5px; }
 .nav-btn.active { background: var(--accent); color: #fff; box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3); }
 
 .section { display:none; } 
 .section.active { display:block; animation: fadeIn 0.3s ease; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
-/* CARDS */
+/* UI CARDS */
 .ex-card { background: var(--bg-card); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 16px; margin-bottom: 16px; }
-input, select, textarea { font-family: var(--font-main); background: var(--bg-main); color: #fff; border: 1.5px solid var(--border); border-radius: 8px; padding: 8px; outline: none; width: 100%; }
+input, select, textarea { font-family: var(--font-main); background: var(--bg-main); color: #fff; border: 1.5px solid var(--border); border-radius: 8px; padding: 8px; outline: none; width: 100%; font-size: 14px; }
 input:focus { border-color: var(--accent); }
 
-/* SETS GRID */
+/* INPUT CONTROLS */
 .set-cols { display:grid; grid-template-columns: 24px 1.2fr 1fr 65px 28px; gap:8px; align-items:center; margin-bottom:10px; }
 .col-lbl { font-size:9px; color:var(--text-muted); text-align:center; text-transform: uppercase; font-weight: 800; letter-spacing: 0.5px; }
-
-/* ADJUSTMENT UI */
 .adj-wrap { display: flex; align-items: center; gap: 2px; background: var(--bg-main); border-radius: 8px; border: 1px solid var(--border); padding: 2px; }
 .adj-btn { background: none; border: none; color: var(--text-muted); padding: 4px 8px; cursor: pointer; font-weight: bold; font-size: 16px; flex: 1; }
-.adj-val { width: 100% !important; border: none !important; text-align: center; padding: 0 !important; font-weight: 700; font-size: 14px; }
+.adj-val { width: 100% !important; border: none !important; text-align: center; padding: 0 !important; font-weight: 700; }
 
 /* HEATMAP */
 .heatmap-container { display: flex; justify-content: center; align-items: center; padding: 20px; background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border); margin-bottom: 20px; }
 .muscle { fill: #262626; transition: fill 1s ease; }
 
-/* UTILS */
-.save-btn { width:100%; padding:16px; background:var(--accent); border:none; color:#fff; font-weight:800; border-radius:12px; cursor:pointer; font-size: 14px; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.4); }
-.secondary-btn { width:100%; padding:12px; background:var(--bg-card); border:1.5px dashed var(--border); color:var(--text-muted); border-radius:12px; cursor:pointer; margin-bottom:1rem; font-size: 12px; font-weight: 600; }
-.tag { font-size: 10px; padding: 2px 6px; border-radius: 4px; background: var(--bg-main); color: var(--text-muted); font-weight: 700; border: 1px solid var(--border); }
+.save-btn { width:100%; padding:16px; background:var(--accent); border:none; color:#fff; font-weight:800; border-radius:12px; cursor:pointer; font-size: 13px; letter-spacing: 1px; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.4); }
+.secondary-btn { width:100%; padding:12px; background:var(--bg-card); border:1.5px dashed var(--border); color:var(--text-muted); border-radius:12px; cursor:pointer; margin-bottom:1rem; font-size: 11px; font-weight: 800; letter-spacing: 0.5px; }
+.tag { font-size: 10px; padding: 2px 6px; border-radius: 4px; background: var(--bg-main); color: var(--text-muted); font-weight: 800; border: 1px solid var(--border); text-transform: uppercase; }
 </style>
 </head>
 <body>
 
 <div id="auth-container">
   <div class="ex-card">
-    <h1 style="text-align:center; color:var(--accent); margin:0 0 5px;">SetForce Pro</h1>
-    <p style="text-align:center; font-size:12px; color:var(--text-muted); margin-bottom:20px;">CLOUD PERFORMANCE TRACKER</p>
+    <h1 style="text-align:center; color:var(--accent); margin:0 0 5px; font-weight:800;">SetForce Pro</h1>
+    <p style="text-align:center; font-size:11px; color:var(--text-muted); margin-bottom:20px; font-weight:700;">CLOUD HEATMAP TRACKER</p>
     <input type="text" id="auth-username" placeholder="Username" style="margin-bottom:12px;">
     <input type="password" id="auth-password" placeholder="Password (6+ chars)" style="margin-bottom:20px;">
     <button onclick="login()" class="save-btn" style="margin-bottom:12px;">LOG IN</button>
-    <button onclick="register()" style="width:100%; background:none; border:none; color:var(--text-muted); font-size:12px; cursor:pointer; font-weight:600;">CREATE NEW ACCOUNT</button>
-    <div id="auth-msg" style="color:var(--red); text-align:center; margin-top:15px; font-size:12px; font-weight:600;"></div>
+    <button onclick="register()" style="width:100%; background:none; border:none; color:var(--text-muted); font-size:12px; cursor:pointer; font-weight:600;">CREATE ACCOUNT</button>
+    <div id="auth-msg" style="color:var(--red); text-align:center; margin-top:15px; font-size:12px; font-weight:800;"></div>
   </div>
 </div>
 
 <div id="app-container" style="display:none; max-width: 500px; margin: 0 auto; padding-top: 1rem;">
   <div style="display:flex; justify-content:space-between; align-items:center;">
-    <div>
-        <div style="font-size:10px; color:var(--text-muted); font-weight:800; letter-spacing:1px;">ATHLETE</div>
-        <div id="user-display" style="font-weight:800; font-size:18px;"></div>
-    </div>
+    <div style="font-weight:800; font-size:18px; color:var(--accent); letter-spacing:-0.5px;" id="user-display"></div>
     <button onclick="logout()" style="background:var(--bg-card); border:1px solid var(--border); color:var(--text-muted); width:35px; height:35px; border-radius:10px; cursor:pointer;"><i class="ti ti-logout"></i></button>
   </div>
 
@@ -94,21 +87,30 @@ input:focus { border-color: var(--accent); }
   <div id="tab-log" class="section active">
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:1rem;">
       <input type="date" id="log-date">
-      <select id="log-type" onchange="applyRoutine()"><option value="">Custom Workout</option></select>
+      <select id="log-type" onchange="applyRoutine()"><option value="">Custom Session</option></select>
     </div>
     <div id="exercises-container"></div>
     <button class="secondary-btn" onclick="addExercise()">+ ADD EXERCISE</button>
     <button id="save-btn" class="save-btn" onclick="saveWorkout()">SAVE SESSION</button>
-    <div id="log-msg" style="text-align:center; margin-top:15px; font-weight:700; font-size:13px;"></div>
+    <div id="log-msg" style="text-align:center; margin-top:15px; font-weight:800; font-size:12px; letter-spacing:1px;"></div>
   </div>
 
   <div id="tab-routines" class="section">
     <div class="ex-card">
-      <div style="font-size:11px; font-weight:800; color:var(--text-muted); margin-bottom:10px;">CREATE NEW ROUTINE</div>
-      <input type="text" id="routine-name" placeholder="Routine Name (e.g., Push Day)" style="margin-bottom:12px;">
+      <div id="routine-builder-title" style="font-size:11px; font-weight:800; color:var(--text-muted); margin-bottom:12px; letter-spacing:1px;">BUILD NEW ROUTINE</div>
+      <input type="text" id="routine-name" placeholder="Routine Name (e.g., Leg Day)" style="margin-bottom:12px; font-weight:700;">
+      <div id="routine-header-labels" style="display:grid; grid-template-columns: 2fr 1fr 50px 30px; gap:8px; margin-bottom:4px; opacity:0.5;">
+        <span class="col-lbl" style="text-align:left;">Exercise</span>
+        <span class="col-lbl">Muscle</span>
+        <span class="col-lbl">Reps</span>
+        <span></span>
+      </div>
       <div id="routine-list-builder"></div>
-      <button class="secondary-btn" onclick="addRoutineRow()">+ ADD EXERCISE TO ROUTINE</button>
-      <button onclick="saveRoutine()" class="save-btn">SAVE TO CLOUD</button>
+      <button class="secondary-btn" onclick="addRoutineRow()">+ ADD EXERCISE</button>
+      <div style="display:flex; gap:8px;">
+          <button id="routine-cancel-btn" onclick="cancelRoutineEdit()" style="display:none; flex:1; background:var(--bg-main); border:1px solid var(--border); color:var(--text-muted); border-radius:12px; font-weight:700; cursor:pointer;">CANCEL</button>
+          <button id="routine-save-btn" onclick="saveRoutine()" class="save-btn" style="flex:2;">SAVE ROUTINE</button>
+      </div>
     </div>
     <div id="routines-list"></div>
   </div>
@@ -153,13 +155,13 @@ input:focus { border-color: var(--accent); }
   const auth = getAuth(app);
   const db = getFirestore(app);
 
-  let currentUser = null, workouts = [], templates = [], exCount = 0;
+  let currentUser = null, workouts = [], templates = [], exCount = 0, editingRoutineId = null;
   const muscleGroups = ["Chest", "Back", "Legs", "Shoulders", "Arms", "Core"];
 
   onAuthStateChanged(auth, async (user) => {
     if (user) {
       currentUser = user;
-      document.getElementById('user-display').textContent = user.email.split('@')[0];
+      document.getElementById('user-display').textContent = user.email.split('@')[0].toUpperCase();
       document.getElementById('auth-container').style.display = 'none';
       document.getElementById('app-container').style.display = 'block';
       await loadData();
@@ -169,19 +171,16 @@ input:focus { border-color: var(--accent); }
     }
   });
 
-  window.login = () => signInWithEmailAndPassword(auth, document.getElementById('auth-username').value.trim() + "@setforce.app", document.getElementById('auth-password').value).catch(e => document.getElementById('auth-msg').textContent = "Invalid Credentials");
-  window.register = () => createUserWithEmailAndPassword(auth, document.getElementById('auth-username').value.trim() + "@setforce.app", document.getElementById('auth-password').value).catch(e => document.getElementById('auth-msg').textContent = "Username Taken or Too Short");
+  window.login = () => signInWithEmailAndPassword(auth, document.getElementById('auth-username').value.trim() + "@setforce.app", document.getElementById('auth-password').value).catch(e => document.getElementById('auth-msg').textContent = "LOG-IN FAILED");
+  window.register = () => createUserWithEmailAndPassword(auth, document.getElementById('auth-username').value.trim() + "@setforce.app", document.getElementById('auth-password').value).catch(e => document.getElementById('auth-msg').textContent = "6+ CHARACTERS REQUIRED");
   window.logout = () => signOut(auth);
 
   async function loadData() {
     const qW = query(collection(db, "users", currentUser.uid, "workouts"), orderBy("date", "desc"));
     const snapW = await getDocs(qW); workouts = snapW.docs.map(d => d.data());
-    const snapT = await getDocs(collection(db, "users", currentUser.uid, "templates")); templates = snapT.docs.map(d => d.data());
+    const snapT = await getDocs(collection(db, "users", currentUser.uid, "templates")); templates = snapT.docs.map(d => ({...d.data(), id: d.id}));
     
-    updateTypeDropdown();
-    renderHistory();
-    renderRoutines();
-    renderHeatmap();
+    updateTypeDropdown(); renderHistory(); renderRoutines(); renderHeatmap();
     document.getElementById('log-date').value = new Date().toISOString().split('T')[0];
   }
 
@@ -191,55 +190,40 @@ input:focus { border-color: var(--accent); }
     if(t === 'progress') renderHeatmap();
   };
 
-  // --- LOGGING LOGIC ---
-  window.addExercise = (name='', group='Chest', sets=[{w:0, r:0, rpe:8}]) => {
+  // --- LOGGING ---
+  window.addExercise = (name='', group='Chest', sets=[{w:0, r:10, rpe:8}, {w:0, r:10, rpe:8}, {w:0, r:10, rpe:8}]) => {
     exCount++; const id = exCount;
     const div = document.createElement('div'); div.className = 'ex-card'; div.id = `ex-${id}`;
     div.innerHTML = `
       <div style="display:flex; gap:8px; margin-bottom:12px;">
-        <input type="text" id="exname-${id}" value="${name}" placeholder="Exercise Name" style="flex:2; font-weight:700;">
-        <select id="exgroup-${id}" style="flex:1; font-size:12px;">
+        <input type="text" id="exname-${id}" value="${name}" placeholder="Exercise Name" style="flex:2; font-weight:800;">
+        <select id="exgroup-${id}" style="flex:1; font-size:11px; font-weight:800; text-transform:uppercase;">
           ${muscleGroups.map(g => `<option ${g===group?'selected':''}>${g}</option>`).join('')}
         </select>
-        <button onclick="this.closest('.ex-card').remove()" style="background:none; border:none; color:var(--text-muted); cursor:pointer;"><i class="ti ti-x"></i></button>
+        <button onclick="this.closest('.ex-card').remove()" style="background:none; border:none; color:var(--text-muted); cursor:pointer;"><i class="ti ti-trash"></i></button>
       </div>
-      <div class="set-cols" style="margin-bottom:4px; opacity:0.6;">
-        <span></span><span class="col-lbl">Weight</span><span class="col-lbl">Reps</span><span class="col-lbl">RPE</span><span></span>
-      </div>
+      <div class="set-cols" style="opacity:0.5; margin-bottom:5px;"><span class="col-lbl"></span><span class="col-lbl">Weight</span><span class="col-lbl">Reps</span><span class="col-lbl">RPE</span><span></span></div>
       <div id="sets-${id}"></div>
-      <button onclick="addSet(${id})" style="width:100%; background:none; border:1px dashed var(--border); color:var(--text-muted); padding:8px; border-radius:8px; margin-top:8px; font-size:11px; font-weight:700; cursor:pointer;">+ ADD SET</button>
+      <button onclick="addSet(${id})" style="width:100%; background:none; border:1px dashed var(--border); color:var(--text-muted); padding:8px; border-radius:8px; margin-top:8px; font-size:10px; font-weight:800; cursor:pointer; letter-spacing:1px;">+ ADD SET</button>
     `;
     document.getElementById('exercises-container').appendChild(div);
     sets.forEach(s => addSet(id, s.w, s.r, s.rpe));
   };
 
-  window.addSet = (exId, w=0, r=0, rpe=8) => {
+  window.addSet = (exId, w=0, r=10, rpe=8) => {
     const cont = document.getElementById(`sets-${exId}`);
     const row = document.createElement('div'); row.className = 'set-cols';
     row.innerHTML = `
-      <span style="font-size:10px; font-weight:800; color:var(--text-muted);">${cont.children.length + 1}</span>
-      <div class="adj-wrap">
-        <button class="adj-btn" onclick="adj(this, -5)">-</button>
-        <input type="number" class="adj-val" value="${w}">
-        <button class="adj-btn" onclick="adj(this, 5)">+</button>
-      </div>
-      <div class="adj-wrap">
-        <button class="adj-btn" onclick="adj(this, -1)">-</button>
-        <input type="number" class="adj-val" value="${r}">
-        <button class="adj-btn" onclick="adj(this, 1)">+</button>
-      </div>
-      <select style="padding:4px; font-size:12px; font-weight:700;">
-        ${[10,9,8,7,6,5,4,3,2,1].map(v => `<option ${v==rpe?'selected':''}>${v}</option>`).join('')}
-      </select>
-      <button onclick="this.closest('.set-cols').remove()" style="background:none; border:none; color:var(--red); cursor:pointer; opacity:0.5;"><i class="ti ti-trash"></i></button>
+      <span style="font-size:10px; font-weight:900; color:var(--text-muted);">${cont.children.length + 1}</span>
+      <div class="adj-wrap"><button class="adj-btn" onclick="adj(this,-5)">-</button><input type="number" class="adj-val" value="${w}"><button class="adj-btn" onclick="adj(this,5)">+</button></div>
+      <div class="adj-wrap"><button class="adj-btn" onclick="adj(this,-1)">-</button><input type="number" class="adj-val" value="${r}"><button class="adj-btn" onclick="adj(this,1)">+</button></div>
+      <select style="font-size:12px; font-weight:800;">${[10,9,8,7,6,5,4,3,2,1].map(v => `<option ${v==rpe?'selected':''}>${v}</option>`).join('')}</select>
+      <button onclick="this.closest('.set-cols').remove()" style="background:none; border:none; color:var(--red); opacity:0.3;"><i class="ti ti-x"></i></button>
     `;
     cont.appendChild(row);
   };
 
-  window.adj = (btn, amt) => {
-    const inp = btn.parentNode.querySelector('input');
-    inp.value = Math.max(0, parseFloat(inp.value || 0) + amt);
-  };
+  window.adj = (btn, amt) => { const inp = btn.parentNode.querySelector('input'); inp.value = Math.max(0, parseFloat(inp.value||0) + amt); };
 
   window.saveWorkout = async () => {
     const btn = document.getElementById('save-btn'); const msg = document.getElementById('log-msg');
@@ -249,29 +233,26 @@ input:focus { border-color: var(--accent); }
         return {
             name: document.getElementById(`exname-${id}`).value,
             group: document.getElementById(`exgroup-${id}`).value,
-            sets: Array.from(div.querySelectorAll('.set-cols')).map(row => {
-                const inps = row.querySelectorAll('input');
-                return { w: parseFloat(inps[0].value)||0, r: parseInt(inps[1].value)||0, rpe: parseInt(row.querySelector('select').value) };
-            }).filter(s => s.r > 0)
+            sets: Array.from(div.querySelectorAll('.set-cols')).map(row => ({
+                w: parseFloat(row.querySelectorAll('input')[0].value)||0,
+                r: parseInt(row.querySelectorAll('input')[1].value)||0,
+                rpe: parseInt(row.querySelector('select').value)
+            })).filter(s => s.r > 0)
         };
     }).filter(e => e.sets.length > 0);
 
-    const workout = { id: Date.now().toString(), date: document.getElementById('log-date').value, exercises };
-    await setDoc(doc(db, "users", currentUser.uid, "workouts", workout.id), workout);
-    msg.textContent = "SESSION SYNCED SUCCESSFULLY";
-    btn.textContent = "SAVE SESSION";
-    setTimeout(() => msg.textContent = "", 3000);
-    loadData();
+    await setDoc(doc(db, "users", currentUser.uid, "workouts", Date.now().toString()), { id: Date.now().toString(), date: document.getElementById('log-date').value, exercises });
+    btn.textContent = "SAVE SESSION"; msg.textContent = "SESSION SYNCED";
+    setTimeout(() => msg.textContent = "", 3000); loadData();
   };
 
-  // --- ROUTINE LOGIC ---
-  window.addRoutineRow = (name='', group='Chest') => {
-    const div = document.createElement('div'); div.className = 'adj-wrap'; div.style.marginBottom = "8px"; div.style.padding = "6px";
+  // --- ROUTINES ---
+  window.addRoutineRow = (name='', group='Chest', reps=10) => {
+    const div = document.createElement('div'); div.className = 'adj-wrap'; div.style.display = "grid"; div.style.gridTemplateColumns = "2fr 1fr 50px 30px"; div.style.marginBottom = "8px"; div.style.padding = "6px";
     div.innerHTML = `
-        <input type="text" placeholder="Exercise" value="${name}" style="border:none; flex:2;">
-        <select style="border:none; flex:1; font-size:11px;">
-            ${muscleGroups.map(g => `<option ${g===group?'selected':''}>${g}</option>`).join('')}
-        </select>
+        <input type="text" placeholder="Exercise" value="${name}" style="border:none; background:transparent; font-weight:700;">
+        <select style="border:none; background:transparent; font-size:10px; font-weight:800; text-transform:uppercase;">${muscleGroups.map(g => `<option ${g===group?'selected':''}>${g}</option>`).join('')}</select>
+        <input type="number" value="${reps}" style="border:none; background:transparent; text-align:center; font-weight:800;">
         <button onclick="this.closest('.adj-wrap').remove()" style="background:none; border:none; color:var(--red); cursor:pointer;"><i class="ti ti-trash"></i></button>
     `;
     document.getElementById('routine-list-builder').appendChild(div);
@@ -279,103 +260,98 @@ input:focus { border-color: var(--accent); }
 
   window.saveRoutine = async () => {
     const name = document.getElementById('routine-name').value;
-    const exercises = Array.from(document.getElementById('routine-list-builder').children).map(row => ({
-        name: row.querySelector('input').value,
-        group: row.querySelector('select').value
-    })).filter(e => e.name);
-    if(!name || !exercises.length) return alert("Add name and exercises");
-    await setDoc(doc(db, "users", currentUser.uid, "templates", Date.now().toString()), { name, exercises });
-    document.getElementById('routine-name').value = "";
-    document.getElementById('routine-list-builder').innerHTML = "";
+    const exercises = Array.from(document.getElementById('routine-list-builder').children).map(row => {
+        const inputs = row.querySelectorAll('input');
+        return { name: inputs[0].value, group: row.querySelector('select').value, reps: parseInt(inputs[1].value) || 10 };
+    }).filter(e => e.name);
+    
+    if(!name || !exercises.length) return alert("Fill in name and exercises");
+    
+    const id = editingRoutineId || Date.now().toString();
+    await setDoc(doc(db, "users", currentUser.uid, "templates", id), { name, exercises });
+    cancelRoutineEdit();
     loadData();
   };
 
-  window.applyRoutine = () => {
-    const routineName = document.getElementById('log-type').value;
-    const routine = templates.find(t => t.name === routineName);
+  window.editRoutine = (id) => {
+    const routine = templates.find(t => t.id === id);
     if(!routine) return;
-    document.getElementById('exercises-container').innerHTML = "";
-    routine.exercises.forEach(ex => addExercise(ex.name, ex.group));
+    editingRoutineId = id;
+    document.getElementById('routine-builder-title').textContent = "EDITING ROUTINE";
+    document.getElementById('routine-name').value = routine.name;
+    document.getElementById('routine-list-builder').innerHTML = "";
+    document.getElementById('routine-cancel-btn').style.display = "block";
+    routine.exercises.forEach(ex => addRoutineRow(ex.name, ex.group, ex.reps));
+    window.scrollTo({top: 0, behavior: 'smooth'});
   };
 
-  function updateTypeDropdown() {
-    const sel = document.getElementById('log-type');
-    sel.innerHTML = '<option value="">Custom Workout</option>' + templates.map(t => `<option value="${t.name}">${t.name}</option>`).join('');
+  window.cancelRoutineEdit = () => {
+    editingRoutineId = null;
+    document.getElementById('routine-builder-title').textContent = "BUILD NEW ROUTINE";
+    document.getElementById('routine-name').value = "";
+    document.getElementById('routine-list-builder').innerHTML = "";
+    document.getElementById('routine-cancel-btn').style.display = "none";
+  };
+
+  window.applyRoutine = () => {
+    const r = templates.find(t => t.name === document.getElementById('log-type').value);
+    if(!r) return; document.getElementById('exercises-container').innerHTML = ""; 
+    r.exercises.forEach(ex => addExercise(ex.name, ex.group, [{w:0, r:ex.reps, rpe:8}, {w:0, r:ex.reps, rpe:8}, {w:0, r:ex.reps, rpe:8}]));
+  };
+
+  function updateTypeDropdown() { document.getElementById('log-type').innerHTML = '<option value="">Custom Session</option>' + templates.map(t => `<option value="${t.name}">${t.name}</option>`).join(''); }
+
+  function renderRoutines() {
+    document.getElementById('routines-list').innerHTML = templates.map(t => `
+        <div class="ex-card" style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+                <div style="font-weight:800; font-size:14px; letter-spacing:-0.2px;">${t.name.toUpperCase()}</div>
+                <div style="font-size:10px; color:var(--text-muted); font-weight:700;">${t.exercises.length} EXERCISES</div>
+            </div>
+            <div style="display:flex; gap:8px;">
+                <button onclick="editRoutine('${t.id}')" style="background:var(--bg-main); border:1px solid var(--border); color:var(--text-muted); width:32px; height:32px; border-radius:8px; cursor:pointer;"><i class="ti ti-pencil"></i></button>
+                <button onclick="deleteRoutine('${t.id}')" style="background:var(--bg-main); border:1px solid var(--border); color:var(--red); width:32px; height:32px; border-radius:8px; cursor:pointer; opacity:0.6;"><i class="ti ti-trash"></i></button>
+            </div>
+        </div>
+    `).join('');
   }
 
-  // --- PROGRESS / HEATMAP LOGIC ---
+  // --- HEATMAP & HISTORY ---
   function renderHeatmap() {
     const volumes = {}; muscleGroups.forEach(g => volumes[g] = 0);
-    // Look at last 14 days for heatmap
     const cutoff = new Date(); cutoff.setDate(cutoff.getDate() - 14);
     workouts.filter(w => new Date(w.date) >= cutoff).forEach(w => {
-        w.exercises.forEach(e => {
-            const vol = e.sets.reduce((sum, s) => sum + (s.w * s.r), 0);
-            if(volumes[e.group] !== undefined) volumes[e.group] += vol;
-        });
+        w.exercises.forEach(e => { if(volumes[e.group] !== undefined) volumes[e.group] += e.sets.length; });
     });
-
-    const maxVol = Math.max(...Object.values(volumes), 1);
-    Object.entries(volumes).forEach(([group, vol]) => {
-        const intensity = vol / maxVol;
-        // Map intensity to orange gradient
-        const color = vol === 0 ? "#262626" : `rgba(249, 115, 22, ${0.2 + (intensity * 0.8)})`;
-        const elements = document.querySelectorAll(`[id^="heat-${group}"]`);
-        elements.forEach(el => {
+    const maxSets = Math.max(...Object.values(volumes), 1);
+    Object.entries(volumes).forEach(([group, count]) => {
+        const intensity = count / maxSets;
+        const color = count === 0 ? "#262626" : `rgba(249, 115, 22, ${0.2 + (intensity * 0.8)})`;
+        document.querySelectorAll(`[id^="heat-${group}"]`).forEach(el => {
             el.style.fill = color;
-            if(vol > 0) el.style.filter = `drop-shadow(0 0 ${intensity * 5}px var(--accent))`;
+            if(count > 0) el.style.filter = `drop-shadow(0 0 ${intensity * 6}px var(--accent))`;
         });
     });
-
-    document.getElementById('volume-breakdown').innerHTML = `
-        <div style="font-size:11px; font-weight:800; color:var(--text-muted); margin-bottom:12px;">14-DAY VOLUME LOAD</div>
-        ${Object.entries(volumes).sort((a,b) => b[1]-a[1]).map(([g, v]) => `
-            <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:4px; font-weight:600;">
-                <span>${g}</span><span>${v.toLocaleString()} lbs</span>
-            </div>
-            <div style="height:4px; background:var(--bg-main); border-radius:2px; margin-bottom:10px;">
-                <div style="width:${(v/maxVol)*100}%; background:var(--accent); height:100%; border-radius:2px;"></div>
-            </div>
-        `).join('')}
-    `;
+    document.getElementById('volume-breakdown').innerHTML = `<div style="font-size:10px; font-weight:800; color:var(--text-muted); margin-bottom:12px; letter-spacing:1px;">14-DAY SET DISTRIBUTION</div>` +
+        Object.entries(volumes).sort((a,b) => b[1]-a[1]).map(([g, v]) => `
+            <div style="display:flex; justify-content:space-between; font-size:11px; margin-bottom:4px; font-weight:800;"><span>${g.toUpperCase()}</span><span>${v} SETS</span></div>
+            <div style="height:4px; background:var(--bg-main); border-radius:2px; margin-bottom:10px;"><div style="width:${(v/maxSets)*100}%; background:var(--accent); height:100%; border-radius:2px;"></div></div>
+        `).join('');
   }
 
   function renderHistory() {
     document.getElementById('history-list').innerHTML = workouts.map(w => `
       <div class="ex-card" style="border-left: 4px solid var(--accent);">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-            <div style="font-weight:800; font-size:14px;">${new Date(w.date).toLocaleDateString(undefined, {month:'short', day:'numeric'})}</div>
+            <div style="font-weight:900; font-size:14px;">${new Date(w.date).toLocaleDateString(undefined, {month:'short', day:'numeric'}).toUpperCase()}</div>
             <button onclick="deleteWorkout('${w.id}')" style="background:none; border:none; color:var(--text-muted); cursor:pointer;"><i class="ti ti-trash"></i></button>
         </div>
-        ${w.exercises.map(e => `
-            <div style="margin-bottom:8px;">
-                <div style="font-size:12px; font-weight:700; color:var(--text-main);">${e.name} <span class="tag">${e.group}</span></div>
-                <div style="display:flex; flex-wrap:wrap; gap:4px; margin-top:4px;">
-                    ${e.sets.map(s => `<span style="font-size:11px; background:var(--bg-main); padding:4px 8px; border-radius:6px; border:1px solid var(--border); font-weight:600;">${s.w}x${s.r} <span style="color:var(--accent)">@${s.rpe}</span></span>`).join('')}
-                </div>
-            </div>
-        `).join('')}
-      </div>
-    `).join('');
+        ${w.exercises.map(e => `<div style="margin-bottom:8px;"><div style="font-size:12px; font-weight:800;">${e.name.toUpperCase()} <span class="tag">${e.group}</span></div><div style="display:flex; flex-wrap:wrap; gap:4px; margin-top:4px;">${e.sets.map(s => `<span style="font-size:10px; background:var(--bg-main); padding:4px 6px; border-radius:4px; border:1px solid var(--border); font-weight:800;">${s.w}x${s.r} <span style="color:var(--accent)">@${s.rpe}</span></span>`).join('')}</div></div>`).join('')}
+      </div>`).join('');
   }
 
-  function renderRoutines() {
-    document.getElementById('routines-list').innerHTML = templates.map(t => `
-        <div class="ex-card" style="display:flex; justify-content:space-between; align-items:center;">
-            <div><div style="font-weight:700;">${t.name}</div><div style="font-size:11px; color:var(--text-muted);">${t.exercises.length} Exercises</div></div>
-            <button onclick="deleteRoutine('${t.name}')" style="background:none; border:none; color:var(--red); cursor:pointer; opacity:0.6;"><i class="ti ti-trash"></i></button>
-        </div>
-    `).join('');
-  }
-
-  window.deleteWorkout = async (id) => { if(confirm("Delete this session?")) { await deleteDoc(doc(db, "users", currentUser.uid, "workouts", id)); loadData(); } };
-  window.deleteRoutine = async (name) => {
-    const routine = templates.find(t => t.name === name);
-    // Find doc ID by getting all templates and matching name (since we used timestamp as ID)
-    const snap = await getDocs(collection(db, "users", currentUser.uid, "templates"));
-    const docId = snap.docs.find(d => d.data().name === name)?.id;
-    if(docId) { await deleteDoc(doc(db, "users", currentUser.uid, "templates", docId)); loadData(); }
-  };
+  window.deleteWorkout = async (id) => { if(confirm("Delete session?")) { await deleteDoc(doc(db, "users", currentUser.uid, "workouts", id)); loadData(); } };
+  window.deleteRoutine = async (id) => { if(confirm("Delete routine?")) { await deleteDoc(doc(db, "users", currentUser.uid, "templates", id)); loadData(); } };
 
 </script>
 </body>
